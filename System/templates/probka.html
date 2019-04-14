@@ -9,57 +9,57 @@
 		<table class="table">
   			<thead>
   			  <tr>
-				  <th scope="col">nr_zjawiska</th>
-				  <th scope="col">poziom</th>
-				  <th scope="col">nr_probki</th>
-				  <th scope="col">data_pobrania</th>
-				  <th scope="col">gestosc</th>
-				  <th scope="col">ph</th>
-				  <th scope="col">K+</th>
-				  <th scope="col">Ca++</th>
-				  <th scope="col">Mg++</th>
-				  <th scope="col">Br-</th>
-				  <th scope="col">Cl-</th>
-				  <th scope="col">CaO</th>
-				  <th scope="col">MgO</th>
-				  <th scope="col">SO3--</th>
-				  <th scope="col">SO4--</th>
-				  <th scope="col">KBr</th>
-				  <th scope="col">CaSO4</th>
-				  <th scope="col">MgSO4</th>
-				  <th scope="col">KCl</th>
-				  <th scope="col">NaCl</th>
-				  <th scope="col">CaCl2</th>
-				  <th scope="col">MgCl2</th>
-				  <th scope="col">NaBr</th>
+				  <th scope="col" class="nr_zjawiska">nr_zjawiska</th>
+				  <th scope="col" class="poziom">poziom</th>
+				  <th scope="col" class="nr_probki">nr_probki</th>
+				  <th scope="col" class="data_pobrania">data_pobrania</th>
+				  <th scope="col" class="gestosc">gestosc</th>
+				  <th scope="col" class="ph">ph</th>
+				  <th scope="col" class="K">K+</th>
+				  <th scope="col" class="Ca">Ca++</th>
+				  <th scope="col" class="Mg">Mg++</th>
+				  <th scope="col" class="Br">Br-</th>
+				  <th scope="col" class="Cl">Cl-</th>
+				  <th scope="col" class="CaO">CaO</th>
+				  <th scope="col" class="MgO">MgO</th>
+				  <th scope="col" class="SO3">SO3--</th>
+				  <th scope="col" class="SO4">SO4--</th>
+				  <th scope="col" class="KBr">KBr</th>
+				  <th scope="col" class="CaSO4">CaSO4</th>
+				  <th scope="col" class="MgSO4">MgSO4</th>
+				  <th scope="col" class="KCl">KCl</th>
+				  <th scope="col" class="NaCl">NaCl</th>
+				  <th scope="col" class="CaCl2">CaCl2</th>
+				  <th scope="col" class="MgCl2">MgCl2</th>
+				  <th scope="col" class="NaBr">NaBr</th>
   			  </tr>
   			</thead>
   			<tbody>
 			  {% for sample in samples %}
   			  <tr>
-				  <td>{{sample.nr_zjawiska}}</td>
-				  <td>{{sample.poziom}}</td>
-				  <td>{{sample.nr_probki}}</td>
-				  <td>{{sample.data_pobrania}}</td>
-				  <td>{{sample.gestosc}}</td>
-				  <td>{{sample.ph}}</td>
-				  <td>{{sample.K}}</td>
-				  <td>{{sample.Ca}}</td>
-				  <td>{{sample.Mg}}</td>
-				  <td>{{sample.Br}}</td>
-				  <td>{{sample.Cl}}</td>
-				  <td>{{sample.CaO}}</td>
-				  <td>{{sample.MgO}}</td>
-				  <td>{{sample.SO3}}</td>
-				  <td>{{sample.SO4}}</td>
-				  <td>{{sample.KBr}}</td>
-				  <td>{{sample.CaSO4}}</td>
-				  <td>{{sample.MgSO4}}</td>
-				  <td>{{sample.KCl}}</td>
-				  <td>{{sample.NaCl}}</td>
-				  <td>{{sample.CaCl2}}</td>
-				  <td>{{sample.MgCl2}}</td>
-				  <td>{{sample.NaBr}}</td>
+				  <td class="nr_zjawiska">{{sample.nr_zjawiska}}</td>
+				  <td class="poziom">{{sample.poziom}}</td>
+				  <td class="nr_probki">{{sample.nr_probki}}</td>
+				  <td class="data_pobrania">{{sample.data_pobrania}}</td>
+				  <td class="gestosc">{{sample.gestosc}}</td>
+				  <td class="ph">{{sample.ph}}</td>
+				  <td class="K">{{sample.K}}</td>
+				  <td class="Ca">{{sample.Ca}}</td>
+				  <td class="Mg">{{sample.Mg}}</td>
+				  <td class="Br">{{sample.Br}}</td>
+				  <td class="Cl">{{sample.Cl}}</td>
+				  <td class="CaO">{{sample.CaO}}</td>
+				  <td class="MgO">{{sample.MgO}}</td>
+				  <td class="SO3">{{sample.SO3}}</td>
+				  <td class="SO4">{{sample.SO4}}</td>
+				  <td class="KBr">{{sample.KBr}}</td>
+				  <td class="CaSO4">{{sample.CaSO4}}</td>
+				  <td class="MgSO4">{{sample.MgSO4}}</td>
+				  <td class="KCl">{{sample.KCl}}</td>
+				  <td class="NaCl">{{sample.NaCl}}</td>
+				  <td class="CaCl2">{{sample.CaCl2}}</td>
+				  <td class="MgCl2">{{sample.MgCl2}}</td>
+				  <td class="NaBr">{{sample.NaBr}}</td>
   			  </tr>
 			  {% endfor %}
   			</tbody>

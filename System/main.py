@@ -13,14 +13,6 @@ app = Flask(__name__)
 def index():
    return render_template('index.html')
 
-@app.route('/test/<int:id>')
-def test(kod_probki):
-    path = 'D:\\Emma\\xls\\{0}.xls'.format(kod_probki)
-    sample = getValueDictFromXls(path)
-    #executeInsert(prepareInsert(sample))
-    print(prepareInsert(sample))
-    return render_template("probka.html", sample=sample)
-
 @app.route('/probka/<int:id>')
 def probka(id):
     sample = getSample(id)
@@ -33,6 +25,13 @@ def probki():
     samples = getAllSamples()
     convertNulls(samples)
     return render_template('probka.html', samples=samples)
+
+@app.route('/config')
+def config():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    config = config['PROBKI']
+    return render_template('config.html', config=config)
 
 if __name__ == '__main__':
    config = configparser.ConfigParser()

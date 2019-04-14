@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+	<head>
+		<title>EZ System</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
+	</head>
+	<body>
+	<div>
+		<table class="table">
+  			<tbody>
+			{% for key, value in config.items() %}
+  			  <tr>
+				  <th scope="row">{{key}}</th>
+				  <td><input type="checkbox" name="{{key}}"></td>
+  			  </tr>
+			{% endfor %}
+  			</tbody>
+		</table>
+	</div>
+	</body>
+</html>
