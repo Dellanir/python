@@ -9,7 +9,6 @@
 		<table class="table">
   			<thead>
   			  <tr>
-				  <th scope="col">#</th>
 				  <th scope="col">nr_zjawiska</th>
 				  <th scope="col">poziom</th>
 				  <th scope="col">nr_probki</th>
@@ -32,34 +31,37 @@
 				  <th scope="col">NaCl</th>
 				  <th scope="col">CaCl2</th>
 				  <th scope="col">MgCl2</th>
+				  <th scope="col">NaBr</th>
   			  </tr>
   			</thead>
   			<tbody>
+			  {% for sample in samples %}
   			  <tr>
-				  <th scope="row">1</th>
-				  <td>48</td>
-				  <td>538</td>
-				  <td>2010</td>
-				  <td>91-04-23</td>
-				  <td>1,206</td>
-				  <td></td>
-				  <td>1,87</td>
-				  <td>1,76</td>
-				  <td>1,56</td>
-				  <td>0,099</td>
-				  <td>92,98</td>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td>5,18</td>
-				  <td>0,3</td>
-				  <td>5,98</td>
-				  <td>1,2</td>
-				  <td>3,38</td>
-				  <td>308,99</td>
-				  <td></td>
-				  <td>5,17</td>
+				  <td>{{sample.nr_zjawiska}}</td>
+				  <td>{{sample.poziom}}</td>
+				  <td>{{sample.nr_probki}}</td>
+				  <td>{{sample.data_pobrania}}</td>
+				  <td>{{sample.gestosc}}</td>
+				  <td>{{sample.ph}}</td>
+				  <td>{{sample.K}}</td>
+				  <td>{{sample.Ca}}</td>
+				  <td>{{sample.Mg}}</td>
+				  <td>{{sample.Br}}</td>
+				  <td>{{sample.Cl}}</td>
+				  <td>{{sample.CaO}}</td>
+				  <td>{{sample.MgO}}</td>
+				  <td>{{sample.SO3}}</td>
+				  <td>{{sample.SO4}}</td>
+				  <td>{{sample.KBr}}</td>
+				  <td>{{sample.CaSO4}}</td>
+				  <td>{{sample.MgSO4}}</td>
+				  <td>{{sample.KCl}}</td>
+				  <td>{{sample.NaCl}}</td>
+				  <td>{{sample.CaCl2}}</td>
+				  <td>{{sample.MgCl2}}</td>
+				  <td>{{sample.NaBr}}</td>
   			  </tr>
+			  {% endfor %}
   			</tbody>
 		</table>
 	</div>
