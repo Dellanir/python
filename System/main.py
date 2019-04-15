@@ -32,25 +32,20 @@ def probki():
     convertNulls(samples)
     return render_template('sample.html', samples=samples, config=config)
 
-@app.route('/config')
-def config():
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    config = config['SAMPLE']
-    return render_template('config.html', config=config)
-
-@app.route('/editConfig', methods=['POST'])
+@app.route('/editConfig', methods=['GET', 'POST'])
 def editConfig():
-    fields = [i for i in request.form]
     config = configparser.SafeConfigParser()
     config.read('config.ini')
-    for key in config['SAMPLE']:
-        config.set('SAMPLE', key, 'False')
-    for key in fields:
-        config.set('SAMPLE', key, 'True')
-    with open('config.ini', 'wb') as configfile:
-        config.write(configfile)
-    return render_template('config.html', config = config['SAMPLE'], edited=True)
+    edited = True if request.method == 'POST' else False
+    if edited:
+        fields = [i for i in request.form]
+        for     key in config['SAMPLE']:
+            config.set('SAMPLE', key, 'False')
+        for key in fields:
+            config.set('SAMPLE', key, 'True')
+        with open('config.ini', 'wb') as configfile:
+            config.write(configfile)
+    return render_template('config.html', config = config['SAMPLE'], edited=edited)
 
 @app.route('/editSample/<int:id>', methods=['GET', 'POST'])
 def editSample(id):
