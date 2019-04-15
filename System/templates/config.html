@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-	<head>
-		<title>EZ System</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
-	</head>
-	<body>
+{% extends 'layout.html' %}
+
+{% block body %}
 	<div>
 		<form method="POST" action="/editConfig">
 			<table class="table" style="width:30%">
@@ -35,5 +31,5 @@
 
 		</form>
 	</div>
-	</body>
-</html>
+{% endblock %}
+

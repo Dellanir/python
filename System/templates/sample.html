@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-	<head>
-		<title>EZ System</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
-		<link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
-		<script src="{{ url_for('static', filename = 'jquery-3.4.0.min.js') }}"></script>
-		<script>
-$(document).ready(function(){
-	{% for key, value in config.items() %}
-		{% if value=='False' %}
-			elements = document.getElementsByClassName("{{key}}");
-			for (let el of elements) el.style.display = "none";
-		{% endif %}
-	{% endfor %}
-})
-		</script>
-	</head>
-	<body>
+{% extends 'layout.html' %}
+
+{% block body %}
 	<div>
 		<table class="tableFixHead">
   			<thead class="thead-dark">
@@ -79,5 +63,14 @@ $(document).ready(function(){
   			</tbody>
 		</table>
 	</div>
-	</body>
-</html>
+		<script>
+$(document).ready(function(){
+	{% for key, value in config.items() %}
+		{% if value=='False' %}
+			elements = document.getElementsByClassName("{{key}}");
+			for (let el of elements) el.style.display = "none";
+		{% endif %}
+	{% endfor %}
+})
+		</script>
+{% endblock %}

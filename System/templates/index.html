@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-	<head>
-		<title>EZ System</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
-	</head>
-	<body>
+{% extends 'layout.html' %}
+
+{% block body %}
 	<div>
 		<table class="table">
   			<thead>
@@ -63,5 +59,4 @@
   			</tbody>
 		</table>
 	</div>
-	</body>
-</html>
+{% endblock %}
