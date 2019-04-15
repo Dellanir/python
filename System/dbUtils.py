@@ -39,8 +39,8 @@ def getAllSamples():
     conn.close()
     return samples
 
-def convertNulls(sampleList):
+def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):
         for key, value in sample.items():
             if value==None:
-                sampleList[index][key]='--'
+                sampleList[index][key]=character

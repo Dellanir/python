@@ -6,16 +6,34 @@
 	</head>
 	<body>
 	<div>
-		<table class="table">
-  			<tbody>
-			{% for key, value in config.items() %}
-  			  <tr>
-				  <th scope="row">{{key}}</th>
-				  <td><input type="checkbox" name="{{key}}"></td>
-  			  </tr>
-			{% endfor %}
-  			</tbody>
-		</table>
+		<form method="POST" action="/editConfig">
+			<table class="table" style="width:30%">
+				<thead>
+					<tr>
+						<div>
+							<b>&nbsp; Configuration view &nbsp;</b>
+							<input type="submit" value="Save configuration">&nbsp;
+			{% if edited %}	<span class="badge badge-success">Configuration Saved!</span>	{% endif %}
+						</div>
+					</tr>
+					<tr>
+						<th>#</th>
+						<th>Column</th>
+						<th>Visible ?</th>
+					</tr>
+				</thead>
+  				<tbody>
+				{% for key, value in config.items() %}
+  				  <tr>
+					  <td>{{loop.index0}}.</td>
+					  <td>{{key}}</td>
+					  <td><input type="checkbox" name="{{key}}" {{ 'checked' if value=='True' else ''}} ></td>
+  				  </tr>
+				{% endfor %}
+  				</tbody>
+			</table>
+
+		</form>
 	</div>
 	</body>
 </html>

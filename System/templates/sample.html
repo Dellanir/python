@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+	<head>
+		<title>EZ System</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+		<script src="{{ url_for('static', filename = 'jquery-3.4.0.min.js') }}"></script>
+		<script>
+$(document).ready(function(){
+	{% for key, value in config.items() %}
+		{% if value=='False' %}
+			elements = document.getElementsByClassName("{{key}}");
+			for (let el of elements) el.style.display = "none";
+		{% endif %}
+	{% endfor %}
+})
+		</script>
+	</head>
+	<body>
+	<div>
+		<table class="tableFixHead">
+  			<thead class="thead-dark">
+  			  <tr>
+				  <th scope="col" class="nr_zjawiska">nr_zjawiska</th>
+				  <th scope="col" class="poziom">poziom</th>
+				  <th scope="col" class="nr_probki">nr_probki</th>
+				  <th scope="col" class="data_pobrania">data_pobrania</th>
+				  <th scope="col" class="gestosc">gestosc</th>
+				  <th scope="col" class="ph">ph</th>
+				  <th scope="col" class="k">K+</th>
+				  <th scope="col" class="ca">Ca++</th>
+				  <th scope="col" class="mg">Mg++</th>
+				  <th scope="col" class="br">Br-</th>
+				  <th scope="col" class="cl">Cl-</th>
+				  <th scope="col" class="cao">CaO</th>
+				  <th scope="col" class="mgo">MgO</th>
+				  <th scope="col" class="so3">SO3--</th>
+				  <th scope="col" class="so4">SO4--</th>
+				  <th scope="col" class="kbr">KBr</th>
+				  <th scope="col" class="caso4">CaSO4</th>
+				  <th scope="col" class="mgso4">MgSO4</th>
+				  <th scope="col" class="kcl">KCl</th>
+				  <th scope="col" class="nacl">NaCl</th>
+				  <th scope="col" class="cacl2">CaCl2</th>
+				  <th scope="col" class="mgcl2">MgCl2</th>
+				  <th scope="col" class="nabr">NaBr</th>
+				  <th scope="col" >Edit</th>
+  			  </tr>
+  			</thead>
+  			<tbody>
+			  {% for sample in samples %}
+  			  <tr>
+				  <td class="nr_zjawiska">{{sample.nr_zjawiska}}</td>
+				  <td class="poziom">{{sample.poziom}}</td>
+				  <td class="nr_probki">{{sample.nr_probki}}</td>
+				  <td class="data_pobrania">{{sample.data_pobrania}}</td>
+				  <td class="gestosc">{{sample.gestosc}}</td>
+				  <td class="ph">{{sample.ph}}</td>
+				  <td class="k">{{sample.K}}</td>
+				  <td class="ca">{{sample.Ca}}</td>
+				  <td class="mg">{{sample.Mg}}</td>
+				  <td class="br">{{sample.Br}}</td>
+				  <td class="cl">{{sample.Cl}}</td>
+				  <td class="cao">{{sample.CaO}}</td>
+				  <td class="mgo">{{sample.MgO}}</td>
+				  <td class="so3">{{sample.SO3}}</td>
+				  <td class="so4">{{sample.SO4}}</td>
+				  <td class="kbr">{{sample.KBr}}</td>
+				  <td class="caso4">{{sample.CaSO4}}</td>
+				  <td class="mgso4">{{sample.MgSO4}}</td>
+				  <td class="kcl">{{sample.KCl}}</td>
+				  <td class="nacl">{{sample.NaCl}}</td>
+				  <td class="cacl2">{{sample.CaCl2}}</td>
+				  <td class="mgcl2">{{sample.MgCl2}}</td>
+				  <td class="nabr">{{sample.NaBr}}</td>
+				  <td> <a href="/editSample/{{sample.id}}"><img src="{{ url_for('static', filename = 'editIcon.png') }}"  width="50%" height="50%"/></a></td>
+  			  </tr>
+			  {% endfor %}
+  			</tbody>
+		</table>
+	</div>
+	</body>
+</html>
