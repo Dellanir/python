@@ -3,19 +3,25 @@
 {% block body %}
 	<div>
 		<form method="POST" action="/editSample/{{sample.id}}">
-			<table class="table" style="width:30%">
+			<table class="table">
 				<thead>
 					<tr>
 						<div>
-							<b>&nbsp; Edit Sample &nbsp; </b>
-							<input type="submit" value="Save new values">&nbsp;
-		{% if edited %}		<span class="badge badge-success">Values Saved!</span>	{% endif %}
+							<b>&nbsp; Widok edycji pomiaru &nbsp; </b>
+							<input type="submit" value="Zapisz zmiany">&nbsp;
+		{% if edited %}		<span class="badge badge-success">Zapisano!</span>	{% endif %}
 						</div>
 					</tr>
 					<tr>
 						<th>#</th>
-						<th>Column</th>
-						<th>Value ?</th>
+						<th>Pole</th>
+						<th>Wartość</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
   				<tbody>
@@ -23,116 +29,254 @@
 					  <td>1</td>
 					  <td>nr_zjawiska</td>
 					  <td><input type="text" name="nr_zjawiska" value="{{sample.nr_zjawiska}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>2</td>
 					  <td>poziom</td>
 					  <td><input type="text" name="poziom" value="{{sample.poziom}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>3</td>
 					  <td>nr_probki</td>
 					  <td><input type="text" name="nr_probki" value="{{sample.nr_probki}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>4</td>
 					  <td>data_pobrania</td>
 					  <td><input type="text" name="data_pobrania" value="{{sample.data_pobrania}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>5</td>
 					  <td>gestosc</td>
 					  <td><input type="text" name="gestosc" value="{{sample.gestosc}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>6</td>
 					  <td>ph</td>
 					  <td><input type="text" name="ph" value="{{sample.ph}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>7</td>
 					  <td>K+</td>
 					  <td><input type="text" name="K" value="{{sample.K}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>8</td>
 					  <td>Ca++</td>
 					  <td><input type="text" name="Ca" value="{{sample.Ca}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>9</td>
 					  <td>Mg++</td>
 					  <td><input type="text" name="Mg" value="{{sample.Mg}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>10</td>
 					  <td>Br-</td>
 					  <td><input type="text" name="Br" value="{{sample.Br}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>11</td>
 					  <td>Cl-</td>
 					  <td><input type="text" name="Cl" value="{{sample.Cl}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>12</td>
 					  <td>CaO</td>
 					  <td><input type="text" name="CaO" value="{{sample.CaO}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>13</td>
 					  <td>MgO</td>
 					  <td><input type="text" name="MgO" value="{{sample.MgO}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>14</td>
 					  <td>SO3--</td>
 					  <td><input type="text" name="SO3" value="{{sample.SO3}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>15</td>
 					  <td>SO4--</td>
 					  <td><input type="text" name="SO4" value="{{sample.SO4}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>16</td>
 					  <td>KBr</td>
 					  <td><input type="text" name="KBr" value="{{sample.KBr}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>17</td>
 					  <td>CaSO4</td>
 					  <td><input type="text" name="CaSO4" value="{{sample.CaSO4}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>18</td>
 					  <td>MgSO4</td>
 					  <td><input type="text" name="MgSO4" value="{{sample.MgSO4}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>19</td>
 					  <td>KCl</td>
 					  <td><input type="text" name="KCl" value="{{sample.KCl}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>20</td>
 					  <td>NaCl</td>
 					  <td><input type="text" name="NaCl" value="{{sample.NaCl}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>21</td>
 					  <td>CaCl2</td>
 					  <td><input type="text" name="CaCl2" value="{{sample.CaCl2}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>22</td>
 					  <td>MgCl2</td>
 					  <td><input type="text" name="MgCl2" value="{{sample.MgCl2}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				  <tr>
 					  <td>23</td>
 					  <td>NaBr</td>
 					  <td><input type="text" name="NaBr" value="{{sample.NaBr}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
   				</tbody>
 			</table>

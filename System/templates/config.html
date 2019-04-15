@@ -3,19 +3,25 @@
 {% block body %}
 	<div>
 		<form method="POST" action="/editConfig">
-			<table class="table" style="width:30%">
+			<table class="table">
 				<thead>
 					<tr>
 						<div>
-							<b>&nbsp; Configuration view &nbsp;</b>
-							<input type="submit" value="Save configuration">&nbsp;
-			{% if edited %}	<span class="badge badge-success">Configuration Saved!</span>	{% endif %}
+							<b>&nbsp; Widok edycji konfiguracji &nbsp;</b>
+							<input type="submit" value="Zapisz Konfigurację!">&nbsp;
+			{% if edited %}	<span class="badge badge-success">Zapisano zmiany!</span>	{% endif %}
 						</div>
 					</tr>
 					<tr>
 						<th>#</th>
-						<th>Column</th>
-						<th>Visible ?</th>
+						<th>Nazwa kolumny</th>
+						<th>Wyswietlać?</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
   				<tbody>
@@ -24,6 +30,12 @@
 					  <td>{{loop.index0}}.</td>
 					  <td>{{key}}</td>
 					  <td><input type="checkbox" name="{{key}}" {{ 'checked' if value=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
   				  </tr>
 				{% endfor %}
   				</tbody>
