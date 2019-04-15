@@ -6,7 +6,7 @@
 	</head>
 	<body>
 	<div>
-		<form method="POST" action="/">
+		<form method="POST" action="/editSample/{{sample.id}}">
 			<table class="table" style="width:30%">
 				<thead>
 					<tr>
@@ -26,121 +26,120 @@
   				  <tr>
 					  <td>1</td>
 					  <td>nr_zjawiska</td>
-					  <td><input type="text" name="nr_zjawiska" value="{{samples[0].nr_zjawiska}}"></td>
+					  <td><input type="text" name="nr_zjawiska" value="{{sample.nr_zjawiska}}"></td>
   				  </tr>
 				  <tr>
 					  <td>2</td>
 					  <td>poziom</td>
-					  <td><input type="text" name="poziom" value="{{samples[0].poziom}}"></td>
+					  <td><input type="text" name="poziom" value="{{sample.poziom}}"></td>
   				  </tr>
 				  <tr>
 					  <td>3</td>
 					  <td>nr_probki</td>
-					  <td><input type="text" name="nr_probki" value="{{samples[0].nr_probki}}"></td>
+					  <td><input type="text" name="nr_probki" value="{{sample.nr_probki}}"></td>
   				  </tr>
 				  <tr>
 					  <td>4</td>
 					  <td>data_pobrania</td>
-					  <td><input type="text" name="data_pobrania" value="{{samples[0].data_pobrania}}"></td>
+					  <td><input type="text" name="data_pobrania" value="{{sample.data_pobrania}}"></td>
   				  </tr>
 				  <tr>
 					  <td>5</td>
 					  <td>gestosc</td>
-					  <td><input type="text" name="gestosc" value="{{samples[0].gestosc}}"></td>
+					  <td><input type="text" name="gestosc" value="{{sample.gestosc}}"></td>
   				  </tr>
 				  <tr>
 					  <td>6</td>
 					  <td>ph</td>
-					  <td><input type="text" name="ph" value="{{samples[0].ph}}"></td>
+					  <td><input type="text" name="ph" value="{{sample.ph}}"></td>
   				  </tr>
 				  <tr>
 					  <td>7</td>
 					  <td>K+</td>
-					  <td><input type="text" name="K" value="{{samples[0].K}}"></td>
+					  <td><input type="text" name="K" value="{{sample.K}}"></td>
   				  </tr>
 				  <tr>
 					  <td>8</td>
 					  <td>Ca++</td>
-					  <td><input type="text" name="Ca" value="{{samples[0].Ca}}"></td>
+					  <td><input type="text" name="Ca" value="{{sample.Ca}}"></td>
   				  </tr>
 				  <tr>
 					  <td>9</td>
 					  <td>Mg++</td>
-					  <td><input type="text" name="Mg" value="{{samples[0].Mg}}"></td>
+					  <td><input type="text" name="Mg" value="{{sample.Mg}}"></td>
   				  </tr>
 				  <tr>
 					  <td>10</td>
 					  <td>Br-</td>
-					  <td><input type="text" name="Br" value="{{samples[0].Br}}"></td>
+					  <td><input type="text" name="Br" value="{{sample.Br}}"></td>
   				  </tr>
 				  <tr>
 					  <td>11</td>
 					  <td>Cl-</td>
-					  <td><input type="text" name="Cl" value="{{samples[0].Cl}}"></td>
+					  <td><input type="text" name="Cl" value="{{sample.Cl}}"></td>
   				  </tr>
 				  <tr>
 					  <td>12</td>
 					  <td>CaO</td>
-					  <td><input type="text" name="CaO" value="{{samples[0].CaO}}"></td>
+					  <td><input type="text" name="CaO" value="{{sample.CaO}}"></td>
   				  </tr>
 				  <tr>
 					  <td>13</td>
 					  <td>MgO</td>
-					  <td><input type="text" name="MgO" value="{{samples[0].MgO}}"></td>
+					  <td><input type="text" name="MgO" value="{{sample.MgO}}"></td>
   				  </tr>
 				  <tr>
 					  <td>14</td>
 					  <td>SO3--</td>
-					  <td><input type="text" name="SO3" value="{{samples[0].SO3}}"></td>
+					  <td><input type="text" name="SO3" value="{{sample.SO3}}"></td>
   				  </tr>
 				  <tr>
 					  <td>15</td>
 					  <td>SO4--</td>
-					  <td><input type="text" name="SO4" value="{{samples[0].SO4}}"></td>
+					  <td><input type="text" name="SO4" value="{{sample.SO4}}"></td>
   				  </tr>
 				  <tr>
 					  <td>16</td>
 					  <td>KBr</td>
-					  <td><input type="text" name="KBr" value="{{samples[0].KBr}}"></td>
+					  <td><input type="text" name="KBr" value="{{sample.KBr}}"></td>
   				  </tr>
 				  <tr>
 					  <td>17</td>
 					  <td>CaSO4</td>
-					  <td><input type="text" name="CaSO4" value="{{samples[0].CaSO4}}"></td>
+					  <td><input type="text" name="CaSO4" value="{{sample.CaSO4}}"></td>
   				  </tr>
 				  <tr>
 					  <td>18</td>
 					  <td>MgSO4</td>
-					  <td><input type="text" name="MgSO4" value="{{samples[0].MgSO4}}"></td>
+					  <td><input type="text" name="MgSO4" value="{{sample.MgSO4}}"></td>
   				  </tr>
 				  <tr>
 					  <td>19</td>
 					  <td>KCl</td>
-					  <td><input type="text" name="KCl" value="{{samples[0].KCl}}"></td>
+					  <td><input type="text" name="KCl" value="{{sample.KCl}}"></td>
   				  </tr>
 				  <tr>
 					  <td>20</td>
 					  <td>NaCl</td>
-					  <td><input type="text" name="NaCl" value="{{samples[0].NaCl}}"></td>
+					  <td><input type="text" name="NaCl" value="{{sample.NaCl}}"></td>
   				  </tr>
 				  <tr>
 					  <td>21</td>
 					  <td>CaCl2</td>
-					  <td><input type="text" name="CaCl2" value="{{samples[0].CaCl2}}"></td>
+					  <td><input type="text" name="CaCl2" value="{{sample.CaCl2}}"></td>
   				  </tr>
 				  <tr>
 					  <td>22</td>
 					  <td>MgCl2</td>
-					  <td><input type="text" name="MgCl2" value="{{samples[0].MgCl2}}"></td>
+					  <td><input type="text" name="MgCl2" value="{{sample.MgCl2}}"></td>
   				  </tr>
 				  <tr>
 					  <td>23</td>
 					  <td>NaBr</td>
-					  <td><input type="text" name="NaBr" value="{{samples[0].NaBr}}"></td>
+					  <td><input type="text" name="NaBr" value="{{sample.NaBr}}"></td>
   				  </tr>
   				</tbody>
 			</table>
-			<input type="hidden" name="id" id="id" value="{{samples[0].id}}">
 		</form>
 	</div>
 	</body>

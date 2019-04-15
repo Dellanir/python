@@ -52,15 +52,16 @@ def editConfig():
         config.write(configfile)
     return render_template('config.html', config = config['SAMPLE'], edited=True)
 
-@app.route('/editSample/<int:id>')
+@app.route('/editSample/<int:id>', methods=['GET', 'POST'])
 def editSample(id):
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    config = config['SAMPLE']
+    edited = True if request.method == 'POST' else False
+    if edited:
+        updateSample(id, request.form)
     sample = getSample(id)
     samples = [sample]
     convertNulls(samples, character='')
-    return render_template('editSample.html', config=config, samples=samples)
+    return render_template('editSample.html', sample=samples[0], edited=edited)
+
 
 
 if __name__ == '__main__':
