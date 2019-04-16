@@ -57,6 +57,13 @@ def editSample(id):
     convertNulls(samples, character='')
     return render_template('editSample.html', sample=samples[0], edited=edited)
 
+@app.route('/help')
+def helpPage():
+    return render_template('help.html')
+
+@app.route('/info')
+def infoPage():
+    return render_template('info.html')
 
 
 if __name__ == '__main__':
