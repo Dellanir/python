@@ -43,7 +43,7 @@ def updateSample(id, sample):
     query += 'nr_zjawiska = {0}, '.format(sample['nr_zjawiska'].replace(',', '.'))
     query += 'poziom = {0}, '.format(sample['poziom'].replace(',', '.'))
     query += 'nr_probki = {0}, '.format(sample['nr_probki'].replace(',', '.'))
-    query += 'data_pobrania = "{0}", '.format(sample['data_pobrania'].replace(',', '.'))
+    query += 'data_pobrania = "{0}", '.format(sample['data_pobrania'].replace('.', '-'))
     query += 'gestosc = {0}, '.format(sample['gestosc'].replace(',', '.'))
     query += 'ph = {0}, '.format(sample['ph'].replace(',', '.'))
     query += 'K = {0}, '.format(sample['K'].replace(',', '.'))
@@ -67,6 +67,17 @@ def updateSample(id, sample):
     query = query.replace(' = ,', ' = NULL,')
     query = query.replace(' =  WHERE', ' = NULL WHERE')
     executeQuery(query)
+
+def addSample(sample):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from results where id=(select MAX(id) from results)'
+    for row in cursor.execute(query):
+        r = row
+    sample = dict_factory(cursor, row)
+    conn.close()
+    return sample
+
 
 def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):

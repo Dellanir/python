@@ -5,6 +5,8 @@ from flask import Flask, render_template, request
 import configparser
 from xlsUtils import *
 from dbUtils import *
+import git
+import datetime
 
 app = Flask(__name__)
 
@@ -55,7 +57,19 @@ def editSample(id):
     sample = getSample(id)
     samples = [sample]
     convertNulls(samples, character='')
-    return render_template('editSample.html', sample=samples[0], edited=edited)
+    return render_template('editSample.html', sample=samples[0], edited=edited, mode="edit")
+
+@app.route('/addSample', methods=['GET', 'POST'])
+def addNewSample():
+    added = True if request.method == 'POST' else False
+    mode = "add"
+    if added:
+        mode = "edit"
+        pass
+    sample = addSample('')
+    samples = [sample]
+    convertNulls(samples, character='')
+    return render_template('editSample.html', sample=samples[0], added=added, mode=mode)
 
 @app.route('/help')
 def helpPage():
@@ -63,7 +77,16 @@ def helpPage():
 
 @app.route('/info')
 def infoPage():
-    return render_template('info.html')
+    try:
+        repo = git.Repo('..')
+        commit = repo.head.commit
+        author = str(commit.author)
+        date = str(datetime.datetime.fromtimestamp(commit.committed_date))
+        message = str(commit.message)
+        revision = str(commit)
+    except:
+        author = date = message = revision = " -- "
+    return render_template('info.html', author=author, date=date, message=message, revision=revision)
 
 
 if __name__ == '__main__':

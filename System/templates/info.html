@@ -2,14 +2,16 @@
 
 {% block body %}
 <div class="page-header" style="margin: 30px">
+	<h2></br></h2>
 	<h1>O systemie </h1>
 	<h2><small>Informacje techniczne</small></h2>
 	<h1><img src="{{ url_for('static', filename='favicon-32x32.png') }}"></h1>
 	<h2></br></h2>
 	<h2></br></h2>
 	<h4><small>Wersja: 0.3</small></h4>
-	<h4><small>Rewizja: 0.3</small></h4>
-	<h4><small>Data aktualizacji: 2019-04-16 14:49:00</small></h4>
-	<h4><small>Commit desc: added page footer</small></h4>
+	<h4><small>Rewizja: {{revision}}</small></h4>
+	<h4><small>Data aktualizacji: {{date}}</small></h4>
+	<h4><small>Autor: {{author}}</small></h4>
+	<h4><small>Opis: {{message}}</small></h4>
 </div>
 {% endblock %}
