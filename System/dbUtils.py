@@ -23,7 +23,7 @@ def getSample(id):
     query = 'select * from results where id = {0}'.format(id)
     for row in cursor.execute(query):
         r = row
-    sample = dict_factory(cursor, row)
+    sample = dict_factory(cursor, r)
     conn.close()
     return sample
 
@@ -74,10 +74,19 @@ def addSample(sample):
     query = 'select * from results where id=(select MAX(id) from results)'
     for row in cursor.execute(query):
         r = row
-    sample = dict_factory(cursor, row)
+    sample = dict_factory(cursor, r)
     conn.close()
     return sample
 
+def getChemistryData(sample_number):
+    conn = sqlite3.connect('data.db')
+    c = conn.cursor()
+    query = 'select * from samples where kod_probki = "{0}"'.format(sample_number)
+    for row in c.execute(query):
+        r = row
+    chemistryData = dict_factory(c, r)
+    conn.close()
+    return chemistryData
 
 def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):

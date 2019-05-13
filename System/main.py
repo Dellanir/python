@@ -23,7 +23,8 @@ def probka(id):
     sample = getSample(id)
     samples = [sample]
     convertNulls(samples)
-    return render_template('sample.html', samples=samples, config=config)
+    chemistryData = getChemistryData(sample['nr_probki'])
+    return render_template('sample.html', samples=samples, config=config, chemistryData=chemistryData)
 
 @app.route('/samples')
 def probki():
@@ -74,6 +75,10 @@ def addNewSample():
 @app.route('/help')
 def helpPage():
     return render_template('help.html')
+
+@app.route('/charts')
+def charts():
+    return "TODO" #render_template('help.html')
 
 @app.route('/info')
 def infoPage():
