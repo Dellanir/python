@@ -34,8 +34,8 @@
   			<tbody>
 			  {% for sample in samples %}
   			  <tr>
-				  <td class="nr_zjawiska">{{sample.nr_zjawiska}}</td>
-				  <td class="poziom">{{sample.poziom}}</td>
+				  <td class="nr_zjawiska"><a href="/event/{{sample.nr_zjawiska}}">{{sample.nr_zjawiska}}</a></td>
+				  <td class="poziom"><a href="/level/{{sample.poziom}}">{{sample.poziom}}</a></td>
 				  <td class="nr_probki"><a href="/sample/{{sample.id}}">{{sample.nr_probki}}</a></td>
 				  <td class="data_pobrania">{{sample.data_pobrania}}</td>
 				  <td class="gestosc">{{sample.gestosc}}</td>

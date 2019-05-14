@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<script src="{{ url_for('static', filename = 'Chart.min.js') }}"></script>
+</br>
+<div>
+	<form method="POST" action="/charts">
+		&nbsp; Nr zjawiska: <input type="text" name="event" value="{{event}}">
+		&nbsp; Poziom: <input type="text" name="level" value="{{level}}">
+		&nbsp;<input type="submit" value="Rysuj!">
+	</form>
+</div>
+
+{% if samples is defined %}
+
+{% for key, value in results.items() if key != "nr_probki" and key != "nr_zjawiska" and key != "poziom" and key != "id" %}
+
+<div>
+<canvas id="line-chart-{{key}}" style="width:50%; height:50%"></canvas>
+</div>
+</br></br>
+
+<script>
+new Chart(document.getElementById("line-chart-{{key}}"), {
+  type: 'line',
+  data: {
+    labels: {{results.nr_probki}},
+    datasets: [{
+        data: {{value}},
+        label: "{{key}}",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Wyniki pomiarowe: {{key}}'
+    }
+
+  }
+});
+</script>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

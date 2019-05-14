@@ -38,6 +38,39 @@ def getAllSamples():
     conn.close()
     return samples
 
+def getSamplesByLevel(level):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from results where poziom={0}'.format(level)
+    samples = []
+    for row in cursor.execute(query):
+        sample = dict_factory(cursor, row)
+        samples.append(sample)
+    conn.close()
+    return samples
+
+def getSamplesByEvent(event):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from results where nr_zjawiska={0}'.format(event)
+    samples = []
+    for row in cursor.execute(query):
+        sample = dict_factory(cursor, row)
+        samples.append(sample)
+    conn.close()
+    return samples
+
+def getSamplesByEventAndLevel(event, level):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from results where nr_zjawiska={0} and poziom={1}'.format(event, level)
+    samples = []
+    for row in cursor.execute(query):
+        sample = dict_factory(cursor, row)
+        samples.append(sample)
+    conn.close()
+    return samples
+
 def updateSample(id, sample):
     query = 'UPDATE results SET '
     query += 'nr_zjawiska = {0}, '.format(sample['nr_zjawiska'].replace(',', '.'))

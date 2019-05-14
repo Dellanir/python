@@ -16,7 +16,7 @@ def index():
    return render_template('index.html')
 
 @app.route('/sample/<int:id>')
-def probka(id):
+def sample(id):
     config = configparser.ConfigParser()
     config.read('config.ini')
     config = config['SAMPLE']
@@ -27,11 +27,38 @@ def probka(id):
     return render_template('sample.html', samples=samples, config=config, chemistryData=chemistryData)
 
 @app.route('/samples')
-def probki():
+def samples():
     config = configparser.ConfigParser()
     config.read('config.ini')
     config = config['SAMPLE']
     samples = getAllSamples()
+    convertNulls(samples)
+    return render_template('sample.html', samples=samples, config=config)
+
+@app.route('/level/<int:level>')
+def samplesByLevel(level):
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    config = config['SAMPLE']
+    samples = getSamplesByLevel(level)
+    convertNulls(samples)
+    return render_template('sample.html', samples=samples, config=config)
+
+@app.route('/event/<int:event>')
+def samplesByEvent(event):
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    config = config['SAMPLE']
+    samples = getSamplesByEvent(event)
+    convertNulls(samples)
+    return render_template('sample.html', samples=samples, config=config)
+
+@app.route('/event-and-level/<int:event>/<int:level>')
+def samplesByEventAndLevel(event, level):
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    config = config['SAMPLE']
+    samples = getSamplesByEventAndLevel(event, level)
     convertNulls(samples)
     return render_template('sample.html', samples=samples, config=config)
 
@@ -76,9 +103,28 @@ def addNewSample():
 def helpPage():
     return render_template('help.html')
 
-@app.route('/charts')
+@app.route('/charts', methods=['GET', 'POST'])
 def charts():
-    return "TODO" #render_template('help.html')
+    if request.method == "GET":
+        return render_template('chart.html')
+    event = request.form['event']
+    level = request.form['level']
+    if event != "" and level != "":
+        samples = getSamplesByEventAndLevel(event, level)
+    if event == "" and level == "":
+        samples = getAllSamples()
+    if event != "" and level == "":
+        samples = getSamplesByEvent(event)
+    if event == "" and level != "":
+        samples = getSamplesByLevel(level)
+    if len(samples)==0:
+        return render_template('chart.html', event=event, level=level)
+    results = {}
+    for key in samples[0]:
+        results[key] = [ x[key] for x in samples ]
+        if None in results[key]:
+            results.pop(key)
+    return render_template('chart.html', results=results, samples=samples, event=event, level=level)
 
 @app.route('/info')
 def infoPage():
