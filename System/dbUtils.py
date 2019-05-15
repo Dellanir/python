@@ -121,6 +121,20 @@ def getChemistryData(sample_number):
     conn.close()
     return chemistryData
 
+def getAllChemistryData(year = ''):
+    conn = sqlite3.connect('data.db')
+    c = conn.cursor()
+    query = 'select * from results left join samples on results.nr_probki = samples.kod_probki'
+    if year != "":
+        query += ' WHERE results.data_pobrania like "{0}%"'.format(year)
+    samples = []
+    for row in c.execute(query):
+        r = row
+        chemistryData = dict_factory(c, r)
+        samples.append(chemistryData)
+    conn.close()
+    return samples
+
 def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):
         for key, value in sample.items():

@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<script src="{{ url_for('static', filename = 'Chart.min.js') }}"></script>
+</br>
+<div>
+	<form method="POST" action="/charts">
+		&nbsp; Nr zjawiska: <input type="text" name="event" value="{{event}}">
+		&nbsp; Poziom: <input type="text" name="level" value="{{level}}">
+		&nbsp;<input type="submit" value="Rysuj!">
+	</form>
+</div>
+</br>
+<div>
+	<form method="POST" action="/charts-chemistry">
+		&nbsp; Rok: <input type="text" name="year" value="{{year}}">
+		&nbsp;<input type="submit" value="Rysuj!"> (Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli || Stężenie Na + K w [mol/kg] H2O wyliczone z soli)
+	</form>
+</div>
+
+
+
+
+
+<div>
+<canvas id="line-chart" ></canvas>
+</div>
+</br></br>
+
+<script>
+new Chart(document.getElementById("line-chart"), {
+  type: 'scatter',
+ data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: [
+            {% for point in data %}
+            {
+                x: {{point.x}},
+                y: {{point.y}},
+
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#000000",
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom',
+                scaleLabel: {
+        			display: true,
+        			labelString: 'Stężenie Na + K w [mol/kg] H2O wyliczone z soli'
+      			}
+            }],
+            yAxes: [{
+                scaleLabel: {
+        			display: true,
+        			labelString: 'Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli'
+      			}
+            }]
+        }
+    }
+});
+</script>
+
+{% endblock %}

@@ -126,6 +126,26 @@ def charts():
             results.pop(key)
     return render_template('chart.html', results=results, samples=samples, event=event, level=level)
 
+@app.route('/charts-chemistry', methods=['GET', 'POST'])
+def chartsChemistry():
+    if request.method == "GET":
+        return render_template('chart.html')
+    year = request.form['year']
+    #samples = getAllSamples()
+    chemData = getAllChemistryData(year)
+    result = {}
+    result['y_axis'] = [ float(x['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore')) for x in chemData if x['stezenie_ca_mg_w_h2o_z_soli'] is not None ]
+    result['x_axis'] = [ float(x['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore')) for x in chemData if x['steznie_na_k_w_h2o_z_soli'] is not None ]
+    data = []
+    for i,x in enumerate(chemData):
+        if x['stezenie_ca_mg_w_h2o_z_soli'] is not None:
+            point = {}
+            point['y'] = float(x['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore'))
+            point['x'] = float(x['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore'))
+            data.append(point)
+    print data
+    return render_template('chart-chem.html', chemData=chemData, result=result, data=data)
+
 @app.route('/info')
 def infoPage():
     try:
