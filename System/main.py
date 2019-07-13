@@ -69,7 +69,7 @@ def editConfig():
     edited = True if request.method == 'POST' else False
     if edited:
         fields = [i for i in request.form]
-        for     key in config['SAMPLE']:
+        for key in config['SAMPLE']:
             config.set('SAMPLE', key, 'False')
         for key in fields:
             config.set('SAMPLE', key, 'True')
@@ -159,6 +159,25 @@ def infoPage():
         author = date = message = revision = " -- "
     return render_template('info.html', author=author, date=date, message=message, revision=revision)
 
+@app.route('/backup', methods=['GET'])
+def backup():
+    backupList = getBackupList()
+    return render_template('backup.html', backupList=backupList)
+
+@app.route('/backupSave', methods=['POST'])
+def backupSave():
+    backupSavedName = exportBackup()
+    backupList = getBackupList()
+    return render_template('backup.html', backupList=backupList, backupSavedName=backupSavedName)
+
+@app.route('/backupLoad', methods=['POST'])
+def backupLoad():
+    backupLoadedName = request.form['name']
+    backupSavedName = exportBackup()
+    importBackup(backupLoadedName)
+    backupList = getBackupList()
+    return render_template('backup.html', backupList=backupList, backupSavedName=backupSavedName,
+                           backupLoadedName=backupLoadedName)
 
 if __name__ == '__main__':
    config = configparser.ConfigParser()

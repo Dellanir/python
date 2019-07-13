@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div style="padding-left:5px; margin-left:5px; margin-top: 5px">
+	<div>
+		<b> Tu można zapisać kopię zapasową bazy danych lub ją wczytać.</b>
+		{% if backupSavedName and not backupLoadedName %}	<span class="badge badge-success">Wyeksportowano kopię zapasową {{backupSavedName}}</span>	{% endif %}
+		{% if backupSavedName and backupLoadedName %}	<span class="badge badge-success">Wczytano kopię zapasową {{backupLoadedName}} oraz zapisano nową kopię {{backupSavedName}}</span>	{% endif %}
+	<span></br></br></span>
+	</div>
+	<div>
+		<form method="POST" action="/backupSave">
+			<span>Utworz kopią zapasową</span>
+			<input type="submit" value="Utwórz">
+		</form>
+		<h2></br></h2>
+		<h2></br></h2>
+		<form method="POST" action="/backupLoad">
+			<span>Wczytaj kopię zapasową</span>
+			<input type="submit" value="Wczytaj">
+			<select name="name" id="name">
+				{% for backup in backupList %}<option value="{{backup}}">{{backup}}</option>
+				{% endfor %}
+			</select>
+		</form>
+	</div>
+</div>
+{% endblock %}

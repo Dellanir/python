@@ -1,5 +1,9 @@
 from xlsUtils import *
 import sqlite3
+import os
+import datetime
+import shutil
+import glob
 
 def executeQuery(query):
     conn = sqlite3.connect('data.db')
@@ -72,7 +76,7 @@ def getSamplesByEventAndLevel(event, level):
     return samples
 
 def updateSample(id, sample):
-    query = 'UPDATE results SET '
+    query = 'INSERT INTO results '
     query += 'nr_zjawiska = {0}, '.format(sample['nr_zjawiska'].replace(',', '.'))
     query += 'poziom = {0}, '.format(sample['poziom'].replace(',', '.'))
     query += 'nr_probki = {0}, '.format(sample['nr_probki'].replace(',', '.'))
@@ -140,3 +144,16 @@ def convertNulls(sampleList, character='--'):
         for key, value in sample.items():
             if value==None:
                 sampleList[index][key]=character
+
+def exportBackup():
+    today = str(datetime.datetime.today()).split('.')[0]
+    backupName = today.replace(' ','_').replace(':','-') + '.db'
+    shutil.copy('data.db', 'db_backup\\{0}'.format(backupName))
+    return backupName
+
+def importBackup(backupName):
+    shutil.copy('db_backup\\{0}'.format(backupName), 'data.db')
+
+def getBackupList():
+    backupList = [ file.split('\\')[-1] for file in glob.glob('db_backup\\*.db') ]
+    return backupList
