@@ -139,6 +139,17 @@ def getAllChemistryData(year = ''):
     conn.close()
     return samples
 
+def getAllIsotopes():
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from izotopy'
+    isotopes = []
+    for row in cursor.execute(query):
+        isotope = dict_factory(cursor, row)
+        isotopes.append(isotope)
+    conn.close()
+    return isotopes
+
 def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):
         for key, value in sample.items():

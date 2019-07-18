@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div>
+		<table class="tableFixHead">
+  			<thead class="thead-dark">
+  			  <tr>
+				  <th scope="col" class="nr_kopalni">Nr kopalni</th>
+				  <th scope="col" class="nr_zjawiska">Nr zjawiska</th>
+				  <th scope="col" class="data_poboru">Data poboru</th>
+				  <th scope="col" class="camg">CaMg</th>
+				  <th scope="col" class="nak">NaK</th>
+				  <th scope="col" class="d18o">d18O</th>
+				  <th scope="col" class="dd">dD</th>
+				  <th scope="col" >Edytuj</th>
+  			  </tr>
+  			</thead>
+  			<tbody>
+			  {% for isotope in isotopes %}
+  			  <tr>
+				  <td class="nr_kopalni">{{isotope.nr_kopalni}}</td>
+				  <td class="nr_zjawiska">{{isotope.nr_zjawiska}}</td>
+				  <td class="data_poboru">{{isotope.data_poboru}}</td>
+				  <td class="camg">{{isotope.camg}}</td>
+				  <td class="nak">{{isotope.nak}}</td>
+				  <td class="d18o">{{isotope.d18o}}</td>
+				  <td class="dd">{{isotope.dd}}</td>
+				  <td> <a href="/editIsotope/{{isotope.id}}"><img src="{{ url_for('static', filename = 'editIcon.png') }}"  width="50%" height="50%"/></a></td>
+  			  </tr>
+			  {% endfor %}
+  			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

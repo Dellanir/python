@@ -35,6 +35,12 @@ def samples():
     convertNulls(samples)
     return render_template('sample.html', samples=samples, config=config)
 
+@app.route('/isotopes')
+def isotopes():
+    isotopes = getAllIsotopes()
+    convertNulls(isotopes)
+    return render_template('isotopes.html', isotopes=isotopes)
+
 @app.route('/level/<int:level>')
 def samplesByLevel(level):
     config = configparser.ConfigParser()
@@ -89,14 +95,18 @@ def editSample(id):
 
 @app.route('/addSample', methods=['GET', 'POST'])
 def addNewSample():
+    # if request.method == 'POST':
+    #     return "Sukces - dodano nowy wynik pomiarowy"
+    # else:
+    #     return render_template('editSample.html', mode="add")
     added = True if request.method == 'POST' else False
     mode = "add"
     if added:
         mode = "edit"
-        pass
-    sample = addSample('')
-    samples = [sample]
-    convertNulls(samples, character='')
+    else:
+        sample = addSample('')
+    samples = [ {} ]
+    #convertNulls(samples, character='')
     return render_template('editSample.html', sample=samples[0], added=added, mode=mode)
 
 @app.route('/help')
