@@ -76,7 +76,7 @@ def getSamplesByEventAndLevel(event, level):
     return samples
 
 def updateSample(id, sample):
-    query = 'INSERT INTO results '
+    query = 'UPDATE results SET '
     query += 'nr_zjawiska = {0}, '.format(sample['nr_zjawiska'].replace(',', '.'))
     query += 'poziom = {0}, '.format(sample['poziom'].replace(',', '.'))
     query += 'nr_probki = {0}, '.format(sample['nr_probki'].replace(',', '.'))
@@ -100,6 +100,20 @@ def updateSample(id, sample):
     query += 'CaCl2 = {0}, '.format(sample['CaCl2'].replace(',', '.'))
     query += 'MgCl2 = {0}, '.format(sample['MgCl2'].replace(',', '.'))
     query += 'NaBr = {0} '.format(sample['NaBr'].replace(',', '.'))
+    query += 'WHERE id={0}'.format(id)
+    query = query.replace(' = ,', ' = NULL,')
+    query = query.replace(' =  WHERE', ' = NULL WHERE')
+    executeQuery(query)
+
+def updateIsotope(id, isotope):
+    query = 'UPDATE izotopy SET '
+    query += "nr_kopalni = '{0}', ".format(isotope['nr_kopalni'].replace(',', '.'))
+    query += "nr_zjawiska = '{0}', ".format(isotope['nr_zjawiska'].replace(',', '.'))
+    query += "data_poboru = '{0}', ".format(isotope['data_poboru'].replace(',', '.'))
+    query += "camg = '{0}', ".format(isotope['camg'].replace(',', '.'))
+    query += "nak = '{0}', ".format(isotope['nak'].replace(',', '.'))
+    query += "d18o = '{0}', ".format(isotope['d18o'].replace(',', '.'))
+    query += "dd = '{0}' ".format(isotope['dd'].replace(',', '.'))
     query += 'WHERE id={0}'.format(id)
     query = query.replace(' = ,', ' = NULL,')
     query = query.replace(' =  WHERE', ' = NULL WHERE')
@@ -149,6 +163,16 @@ def getAllIsotopes():
         isotopes.append(isotope)
     conn.close()
     return isotopes
+
+def getIsotope(id):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from izotopy where id = {0}'.format(id)
+    for row in cursor.execute(query):
+        r = row
+    isotope = dict_factory(cursor, r)
+    conn.close()
+    return isotope
 
 def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):

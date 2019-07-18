@@ -39,7 +39,18 @@ def samples():
 def isotopes():
     isotopes = getAllIsotopes()
     convertNulls(isotopes)
-    return render_template('isotopes.html', isotopes=isotopes)
+    return render_template('isotope.html', isotopes=isotopes)
+
+@app.route('/editIsotope/<int:id>', methods = ['GET', 'POST'])
+def editIsotope(id):
+    edited = False
+    if request.method == 'POST':
+        edited = True
+        updateIsotope(id, request.form)
+    isotope = getIsotope(id)
+    isotopes = [isotope]
+    convertNulls(isotopes)
+    return render_template('editIsotope.html', isotope=isotopes[0], edited=edited)
 
 @app.route('/level/<int:level>')
 def samplesByLevel(level):
