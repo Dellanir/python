@@ -1,7 +1,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import configparser
 from xlsUtils import *
 from dbUtils import *
@@ -51,6 +51,23 @@ def editIsotope(id):
     isotopes = [isotope]
     convertNulls(isotopes)
     return render_template('editIsotope.html', isotope=isotopes[0], edited=edited)
+
+@app.route('/addIsotope', methods = ['GET', 'POST'])
+def addNewIsotopeView():
+    if request.method == 'POST':
+        addIsotope(request.form)
+        return redirect(url_for("isotopes"))
+    return render_template('addIsotope.html')
+
+@app.route('/deleteIsotope/<int:id>', methods = ['GET', 'POST'])
+def deleteIsotopeView(id):
+    if request.method == 'POST':
+        deleteIsotope(id)
+        return redirect(url_for("isotopes"))
+    isotope = getIsotope(id)
+    isotopes = [isotope]
+    convertNulls(isotopes)
+    return render_template('deleteIsotope.html', isotope=isotopes[0], id=id)
 
 @app.route('/level/<int:level>')
 def samplesByLevel(level):

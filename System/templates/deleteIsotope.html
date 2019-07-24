@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div>
+		<form method="POST" action="/deleteIsotope/{{id}}">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>
+						</br>
+						<b>Czy na pewno chcesz usunąć te dane?</b></br>
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+						Nr Kopalni: {{isotope.nr_kopalni}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						Nr zjawiska: {{isotope.nr_zjawiska}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						Data Poboru: {{isotope.data_poboru}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						CaMg: {{isotope.camg}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						NaK: {{isotope.nak}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						d18O: {{isotope.d18o}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						dD: {{isotope.dd}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<div>
+							<input type="submit" value="Usuń">&nbsp;
+						</div>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+{% endblock %}

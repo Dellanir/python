@@ -5,6 +5,7 @@ import datetime
 import shutil
 import glob
 
+#Helpers
 def executeQuery(query):
     conn = sqlite3.connect('data.db')
     c = conn.cursor()
@@ -21,6 +22,7 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+#Sample operations
 def getSample(id):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
@@ -105,20 +107,6 @@ def updateSample(id, sample):
     query = query.replace(' =  WHERE', ' = NULL WHERE')
     executeQuery(query)
 
-def updateIsotope(id, isotope):
-    query = 'UPDATE izotopy SET '
-    query += "nr_kopalni = '{0}', ".format(isotope['nr_kopalni'].replace(',', '.'))
-    query += "nr_zjawiska = '{0}', ".format(isotope['nr_zjawiska'].replace(',', '.'))
-    query += "data_poboru = '{0}', ".format(isotope['data_poboru'].replace(',', '.'))
-    query += "camg = '{0}', ".format(isotope['camg'].replace(',', '.'))
-    query += "nak = '{0}', ".format(isotope['nak'].replace(',', '.'))
-    query += "d18o = '{0}', ".format(isotope['d18o'].replace(',', '.'))
-    query += "dd = '{0}' ".format(isotope['dd'].replace(',', '.'))
-    query += 'WHERE id={0}'.format(id)
-    query = query.replace(' = ,', ' = NULL,')
-    query = query.replace(' =  WHERE', ' = NULL WHERE')
-    executeQuery(query)
-
 def addSample(sample):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
@@ -153,6 +141,8 @@ def getAllChemistryData(year = ''):
     conn.close()
     return samples
 
+
+#Isotope operations
 def getAllIsotopes():
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
@@ -173,6 +163,37 @@ def getIsotope(id):
     isotope = dict_factory(cursor, r)
     conn.close()
     return isotope
+
+def updateIsotope(id, isotope):
+    query = 'UPDATE izotopy SET '
+    query += "nr_kopalni = '{0}', ".format(isotope['nr_kopalni'].replace(',', '.'))
+    query += "nr_zjawiska = '{0}', ".format(isotope['nr_zjawiska'].replace(',', '.'))
+    query += "data_poboru = '{0}', ".format(isotope['data_poboru'].replace(',', '.'))
+    query += "camg = '{0}', ".format(isotope['camg'].replace(',', '.'))
+    query += "nak = '{0}', ".format(isotope['nak'].replace(',', '.'))
+    query += "d18o = '{0}', ".format(isotope['d18o'].replace(',', '.'))
+    query += "dd = '{0}' ".format(isotope['dd'].replace(',', '.'))
+    query += 'WHERE id={0}'.format(id)
+    query = query.replace(' = ,', ' = NULL,')
+    query = query.replace(' =  WHERE', ' = NULL WHERE')
+    executeQuery(query)
+
+def addIsotope(isotope):
+    query = 'INSERT into izotopy(nr_kopalni, nr_zjawiska, data_poboru, camg, nak, d18o, dd) values ('
+    query += '"{0}", '.format(isotope['nr_kopalni'])
+    query += '"{0}", '.format(isotope['nr_zjawiska'])
+    query += '"{0}", '.format(isotope['data_poboru'])
+    query += '"{0}", '.format(isotope['camg'])
+    query += '"{0}", '.format(isotope['nak'])
+    query += '"{0}", '.format(isotope['d18o'].replace(',', '.'))
+    query += '"{0}")'.format(isotope['dd'].replace(',', '.'))
+    query = query.replace(' = ,', ' = NULL,')
+    query = query.replace(' =  WHERE', ' = NULL WHERE')
+    executeQuery(query)
+
+def deleteIsotope(id):
+    query = "DELETE from izotopy where id={0}".format(id)
+    executeQuery(query)
 
 def convertNulls(sampleList, character='--'):
     for index, sample in enumerate(sampleList):
