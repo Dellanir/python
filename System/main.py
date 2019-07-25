@@ -23,7 +23,7 @@ def sample(id):
     sample = getSample(id)
     samples = [sample]
     convertNulls(samples)
-    return render_template('sample.html', samples=samples, config=config, chemistryData=chemistryData)
+    return render_template('sample.html', samples=samples, config=config)
 
 @app.route('/samples')
 def samples():
