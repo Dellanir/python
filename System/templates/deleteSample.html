@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div>
+		<form method="POST" action="/deleteSample/{{id}}">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>
+						</br>
+						<b>Czy na pewno chcesz usunąć te dane?</b></br>
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							nr_zjawiska: {{sample.nr_zjawiska}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							poziom: {{sample.poziom}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							nr_probki: {{sample.nr_probki}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							data_pobrania: {{sample.data_pobrania}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<div>
+							<input type="submit" value="Usuń">&nbsp;
+						</div>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+{% endblock %}

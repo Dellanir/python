@@ -2,20 +2,13 @@
 
 {% block body %}
 	<div>
-		{% if mode=='edit' %}
-		<form method="POST" action="/editSample/{{sample.id}}">{% endif %}
-		{% if mode=='add' %}
-		<form method="POST" action="/addSample">{% endif %}
+		<form method="POST" action="/addSample">
 			<table class="table">
 				<thead>
 					<tr>
 						<div>
-	{% if mode=='edit' %}	<b>&nbsp; Widok edycji pomiaru &nbsp; </b>
-							<input type="submit" value="Zapisz zmiany">&nbsp;{% endif %}
-	{% if mode=='add' %}	<b>&nbsp; Widok dodawania nowego pomiaru &nbsp; </b>
-							<input type="submit" value="Zapisz nowy pomiar">&nbsp;{% endif %}
-		{% if edited %}		<span class="badge badge-success">Zapisano pomiar!</span>	{% endif %}
-		{% if added %}		<span class="badge badge-success">Dodano nowy pomiar!</span>	{% endif %}
+							<b>&nbsp; Widok dodawania nowego pomiaru &nbsp; </b>
+							<input type="submit" value="Zapisz nowy pomiar">&nbsp
 						</div>
 					</tr>
 					<tr>
@@ -34,7 +27,7 @@
   				  <tr>
 					  <td>1</td>
 					  <td>nr_zjawiska</td>
-					  <td><input type="text" name="nr_zjawiska" value="{{sample.nr_zjawiska}}"></td>
+					  <td><input type="text" name="nr_zjawiska" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -45,7 +38,7 @@
 				  <tr>
 					  <td>2</td>
 					  <td>poziom</td>
-					  <td><input type="text" name="poziom" value="{{sample.poziom}}"></td>
+					  <td><input type="text" name="poziom" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -56,7 +49,7 @@
 				  <tr>
 					  <td>3</td>
 					  <td>nr_probki</td>
-					  <td><input type="text" name="nr_probki" value="{{sample.nr_probki}}"></td>
+					  <td><input type="text" name="nr_probki" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -67,7 +60,7 @@
 				  <tr>
 					  <td>4</td>
 					  <td>data_pobrania</td>
-					  <td><input type="text" name="data_pobrania" value="{{sample.data_pobrania}}"></td>
+					  <td><input type="text" name="data_pobrania" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -78,7 +71,7 @@
 				  <tr>
 					  <td>5</td>
 					  <td>gestosc</td>
-					  <td><input type="text" name="gestosc" value="{{sample.gestosc}}"></td>
+					  <td><input type="text" name="gestosc" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -89,7 +82,7 @@
 				  <tr>
 					  <td>6</td>
 					  <td>ph</td>
-					  <td><input type="text" name="ph" value="{{sample.ph}}"></td>
+					  <td><input type="text" name="ph" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -100,7 +93,7 @@
 				  <tr>
 					  <td>7</td>
 					  <td>K+</td>
-					  <td><input type="text" name="K" value="{{sample.K}}"></td>
+					  <td><input type="text" name="K" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -111,7 +104,7 @@
 				  <tr>
 					  <td>8</td>
 					  <td>Ca++</td>
-					  <td><input type="text" name="Ca" value="{{sample.Ca}}"></td>
+					  <td><input type="text" name="Ca" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -122,7 +115,7 @@
 				  <tr>
 					  <td>9</td>
 					  <td>Mg++</td>
-					  <td><input type="text" name="Mg" value="{{sample.Mg}}"></td>
+					  <td><input type="text" name="Mg" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -133,7 +126,7 @@
 				  <tr>
 					  <td>10</td>
 					  <td>Br-</td>
-					  <td><input type="text" name="Br" value="{{sample.Br}}"></td>
+					  <td><input type="text" name="Br" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -144,7 +137,7 @@
 				  <tr>
 					  <td>11</td>
 					  <td>Cl-</td>
-					  <td><input type="text" name="Cl" value="{{sample.Cl}}"></td>
+					  <td><input type="text" name="Cl" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -155,7 +148,7 @@
 				  <tr>
 					  <td>12</td>
 					  <td>CaO</td>
-					  <td><input type="text" name="CaO" value="{{sample.CaO}}"></td>
+					  <td><input type="text" name="CaO" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -166,7 +159,7 @@
 				  <tr>
 					  <td>13</td>
 					  <td>MgO</td>
-					  <td><input type="text" name="MgO" value="{{sample.MgO}}"></td>
+					  <td><input type="text" name="MgO" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -177,7 +170,7 @@
 				  <tr>
 					  <td>14</td>
 					  <td>SO3--</td>
-					  <td><input type="text" name="SO3" value="{{sample.SO3}}"></td>
+					  <td><input type="text" name="SO3" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -188,7 +181,7 @@
 				  <tr>
 					  <td>15</td>
 					  <td>SO4--</td>
-					  <td><input type="text" name="SO4" value="{{sample.SO4}}"></td>
+					  <td><input type="text" name="SO4" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -199,7 +192,7 @@
 				  <tr>
 					  <td>16</td>
 					  <td>KBr</td>
-					  <td><input type="text" name="KBr" value="{{sample.KBr}}"></td>
+					  <td><input type="text" name="KBr" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -210,7 +203,7 @@
 				  <tr>
 					  <td>17</td>
 					  <td>CaSO4</td>
-					  <td><input type="text" name="CaSO4" value="{{sample.CaSO4}}"></td>
+					  <td><input type="text" name="CaSO4" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -221,7 +214,7 @@
 				  <tr>
 					  <td>18</td>
 					  <td>MgSO4</td>
-					  <td><input type="text" name="MgSO4" value="{{sample.MgSO4}}"></td>
+					  <td><input type="text" name="MgSO4" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -232,7 +225,7 @@
 				  <tr>
 					  <td>19</td>
 					  <td>KCl</td>
-					  <td><input type="text" name="KCl" value="{{sample.KCl}}"></td>
+					  <td><input type="text" name="KCl" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -243,7 +236,7 @@
 				  <tr>
 					  <td>20</td>
 					  <td>NaCl</td>
-					  <td><input type="text" name="NaCl" value="{{sample.NaCl}}"></td>
+					  <td><input type="text" name="NaCl" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -254,7 +247,7 @@
 				  <tr>
 					  <td>21</td>
 					  <td>CaCl2</td>
-					  <td><input type="text" name="CaCl2" value="{{sample.CaCl2}}"></td>
+					  <td><input type="text" name="CaCl2" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -265,7 +258,7 @@
 				  <tr>
 					  <td>22</td>
 					  <td>MgCl2</td>
-					  <td><input type="text" name="MgCl2" value="{{sample.MgCl2}}"></td>
+					  <td><input type="text" name="MgCl2" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -276,7 +269,7 @@
 				  <tr>
 					  <td>23</td>
 					  <td>NaBr</td>
-					  <td><input type="text" name="NaBr" value="{{sample.NaBr}}"></td>
+					  <td><input type="text" name="NaBr" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -287,7 +280,7 @@
 				  <tr>
 					  <td>24</td>
 					  <td>Stężenie roztworu [g/l] roztworu z soli</td>
-					  <td><input type="text" name="stezenie_roztworu_z_soli" value="{{(sample.stezenie_roztworu_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="stezenie_roztworu_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -298,7 +291,7 @@
 				  <tr>
 					  <td>25</td>
 					  <td>Stężenie roztworu [g/l] roztworu z jonów</td>
-					  <td><input type="text" name="stezenie_roztworu_z_jonow" value="{{(sample.stezenie_roztworu_z_jonow|float)|round(2)}}"></td>
+					  <td><input type="text" name="stezenie_roztworu_z_jonow" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -309,7 +302,7 @@
 				  <tr>
 					  <td>26</td>
 					  <td>Stężenie roztworu w [g/kg] H2O z soli</td>
-					  <td><input type="text" name="stezenie_roztworu_w_h2o_z_soli" value="{{(sample.stezenie_roztworu_w_h2o_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="stezenie_roztworu_w_h2o_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -320,7 +313,7 @@
 				  <tr>
 					  <td>27</td>
 					  <td>Stężenie roztworu w [g/kg] H2O z jonów</td>
-					  <td><input type="text" name="stezenie_roztoworu_w_h2o_z_jonow" value="{{(sample.stezenie_roztoworu_w_h2o_z_jonow|float)|round(2)}}"></td>
+					  <td><input type="text" name="stezenie_roztoworu_w_h2o_z_jonow" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -331,7 +324,7 @@
 				  <tr>
 					  <td>28</td>
 					  <td>Stężenie Ca+Mg w [mol/kg] H2O z soli</td>
-					  <td><input type="text" name="stezenie_ca_mg_w_h2o_z_soli" value="{{(sample.stezenie_ca_mg_w_h2o_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="stezenie_ca_mg_w_h2o_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -342,7 +335,7 @@
 				  <tr>
 					  <td>29</td>
 					  <td>Stężenie Na+K w [mol/kg] H2O z soli</td>
-					  <td><input type="text" name="steznie_na_k_w_h2o_z_soli" value="{{(sample.steznie_na_k_w_h2o_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="steznie_na_k_w_h2o_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -353,7 +346,7 @@
 				  <tr>
 					  <td>30</td>
 					  <td>Stężenie Na+K+Ca+Mg [mol/kg] w H2O z soli</td>
-					  <td><input type="text" name="steznie_na_k_ca_mg_w_h2o_z_soli" value="{{(sample.steznie_na_k_ca_mg_w_h2o_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="steznie_na_k_ca_mg_w_h2o_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -364,7 +357,7 @@
 				  <tr>
 					  <td>31</td>
 					  <td>Poprawka na tlen obliczona z soli</td>
-					  <td><input type="text" name="poprawka_na_tlen_z_soli" value="{{(sample.poprawka_na_tlen_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="poprawka_na_tlen_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -375,7 +368,7 @@
 				  <tr>
 					  <td>32</td>
 					  <td>Poprawka na tlen obliczona z jonów</td>
-					  <td><input type="text" name="poprawka_na_tlen_z_jonow" value="{{(sample.poprawka_na_tlen_z_jonow|float)|round(2)}}"></td>
+					  <td><input type="text" name="poprawka_na_tlen_z_jonow" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -386,7 +379,7 @@
 				  <tr>
 					  <td>33</td>
 					  <td>Poprawka na deuter obliczona z soli</td>
-					  <td><input type="text" name="poprawka_na_deuter_z_soli" value="{{(sample.poprawka_na_deuter_z_soli|float)|round(2)}}"></td>
+					  <td><input type="text" name="poprawka_na_deuter_z_soli" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -397,7 +390,7 @@
 				  <tr>
 					  <td>34</td>
 					  <td>Poprawka na deuter obliczona z jonów</td>
-					  <td><input type="text" name="poprawka_na_deuter_z_jonow" value="{{(sample.poprawka_na_deuter_z_jonow|float)|round(2)}}"></td>
+					  <td><input type="text" name="poprawka_na_deuter_z_jonow" value=""></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -405,9 +398,6 @@
 					  <td></td>
 					  <td></td>
   				  </tr>
-				  <tr>
-					  <td><b><a href="/deleteSample/{{sample.id}}">Usuń te dane pomiarowe</a></b></td>
-				  </tr>
   				</tbody>
 			</table>
 		</form>

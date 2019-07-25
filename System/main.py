@@ -1,7 +1,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import configparser
 from xlsUtils import *
 from dbUtils import *
@@ -55,14 +55,14 @@ def editIsotope(id):
 def addNewIsotopeView():
     if request.method == 'POST':
         addIsotope(request.form)
-        return redirect(url_for("isotopes"))
+        return '<html>Dodano nowe dane izotopowe! Za 5 sekund zostaniesz przekierowany.<script>window.setTimeout(function(){window.location.href = "/isotopes";}, 5000);</script></html>'
     return render_template('addIsotope.html')
 
 @app.route('/deleteIsotope/<int:id>', methods = ['GET', 'POST'])
 def deleteIsotopeView(id):
     if request.method == 'POST':
         deleteIsotope(id)
-        return redirect(url_for("isotopes"))
+        return '<html>Usunieto dane izotopowe! Za 5 sekund zostaniesz przekierowany.<script>window.setTimeout(function(){window.location.href = "/isotopes";}, 5000);</script></html>'
     isotope = getIsotope(id)
     isotopes = [isotope]
     convertNulls(isotopes)
@@ -122,19 +122,21 @@ def editSample(id):
 
 @app.route('/addSample', methods=['GET', 'POST'])
 def addNewSample():
-    # if request.method == 'POST':
-    #     return "Sukces - dodano nowy wynik pomiarowy"
-    # else:
-    #     return render_template('editSample.html', mode="add")
-    added = True if request.method == 'POST' else False
-    mode = "add"
-    if added:
-        mode = "edit"
+    if request.method == 'POST':
+        addSample(request.form)
+        return '<html>Dodano nowy pomiar! Za 5 sekund zostaniesz przekierowany.<script>window.setTimeout(function(){window.location.href = "/samples";}, 5000);</script></html>'
     else:
-        sample = addSample('')
-    samples = [ {} ]
-    #convertNulls(samples, character='')
-    return render_template('editSample.html', sample=samples[0], added=added, mode=mode)
+         return render_template('addSample.html')
+
+@app.route('/deleteSample/<int:id>', methods = ['GET', 'POST'])
+def deleteSampleView(id):
+    if request.method == 'POST':
+        deleteSample(id)
+        return '<html>Usunieto dane pomiarowe! Za 5 sekund zostaniesz przekierowany.<script>window.setTimeout(function(){window.location.href = "/samples";}, 5000);</script></html>'
+    sample = getSample(id)
+    samples = [sample]
+    convertNulls(samples, character='')
+    return render_template('deleteSample.html', sample=samples[0], id=id)
 
 @app.route('/help')
 def helpPage():

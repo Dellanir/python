@@ -101,46 +101,66 @@ def updateSample(id, sample):
     query += 'NaCl = {0}, '.format(sample['NaCl'].replace(',', '.'))
     query += 'CaCl2 = {0}, '.format(sample['CaCl2'].replace(',', '.'))
     query += 'MgCl2 = {0}, '.format(sample['MgCl2'].replace(',', '.'))
-    query += 'NaBr = {0} '.format(sample['NaBr'].replace(',', '.'))
+    query += 'NaBr = {0}, '.format(sample['NaBr'].replace(',', '.'))
+    query += 'stezenie_roztworu_z_soli = {0}, '.format(sample['stezenie_roztworu_z_soli'].replace(',', '.'))
+    query += 'stezenie_roztworu_z_jonow = {0}, '.format(sample['stezenie_roztworu_z_jonow'].replace(',', '.'))
+    query += 'stezenie_roztworu_w_h2o_z_soli = {0}, '.format(sample['stezenie_roztworu_w_h2o_z_soli'].replace(',', '.'))
+    query += 'stezenie_roztoworu_w_h2o_z_jonow = {0}, '.format(sample['stezenie_roztoworu_w_h2o_z_jonow'].replace(',', '.'))
+    query += 'stezenie_ca_mg_w_h2o_z_soli = {0}, '.format(sample['stezenie_ca_mg_w_h2o_z_soli'].replace(',', '.'))
+    query += 'steznie_na_k_w_h2o_z_soli = {0}, '.format(sample['steznie_na_k_w_h2o_z_soli'].replace(',', '.'))
+    query += 'steznie_na_k_ca_mg_w_h2o_z_soli = {0}, '.format(sample['steznie_na_k_ca_mg_w_h2o_z_soli'].replace(',', '.'))
+    query += 'poprawka_na_tlen_z_soli = {0}, '.format(sample['poprawka_na_tlen_z_soli'].replace(',', '.'))
+    query += 'poprawka_na_tlen_z_jonow = {0}, '.format(sample['poprawka_na_tlen_z_jonow'].replace(',', '.'))
+    query += 'poprawka_na_deuter_z_soli = {0}, '.format(sample['poprawka_na_deuter_z_soli'].replace(',', '.'))
+    query += 'poprawka_na_deuter_z_jonow = {0} '.format(sample ['poprawka_na_deuter_z_jonow'].replace(',', '.'))
     query += 'WHERE id={0}'.format(id)
     query = query.replace(' = ,', ' = NULL,')
     query = query.replace(' =  WHERE', ' = NULL WHERE')
     executeQuery(query)
 
 def addSample(sample):
-    conn = sqlite3.connect('data.db')
-    cursor = conn.cursor()
-    query = 'select * from results where id=(select MAX(id) from results)'
-    for row in cursor.execute(query):
-        r = row
-    sample = dict_factory(cursor, r)
-    conn.close()
-    return sample
+    query = 'INSERT INTO results(nr_zjawiska, poziom, nr_probki, data_pobrania, gestosc, ph, K, Ca, Mg, Br, Cl, CaO, MgO, SO3, SO4, KBr, CaSO4, MgSO4, KCl, NaCl, CaCl2, MgCl2, NaBr, stezenie_roztworu_z_soli, stezenie_roztworu_z_jonow, stezenie_roztworu_w_h2o_z_soli, stezenie_roztoworu_w_h2o_z_jonow, stezenie_ca_mg_w_h2o_z_soli, steznie_na_k_w_h2o_z_soli, steznie_na_k_ca_mg_w_h2o_z_soli, poprawka_na_tlen_z_soli, poprawka_na_tlen_z_jonow, poprawka_na_deuter_z_soli, poprawka_na_deuter_z_jonow) values ('
+    query += '{0}, '.format(sample['nr_zjawiska'].replace(',', '.'))
+    query += '{0}, '.format(sample['poziom'].replace(',', '.'))
+    query += '{0}, '.format(sample['nr_probki'].replace(',', '.'))
+    query += '"{0}", '.format(sample['data_pobrania'].replace('.', '-'))
+    query += '{0}, '.format(sample['gestosc'].replace(',', '.'))
+    query += '{0}, '.format(sample['ph'].replace(',', '.'))
+    query += '{0}, '.format(sample['K'].replace(',', '.'))
+    query += '{0}, '.format(sample['Ca'].replace(',', '.'))
+    query += '{0}, '.format(sample['Mg'].replace(',', '.'))
+    query += '{0}, '.format(sample['Br'].replace(',', '.'))
+    query += '{0}, '.format(sample['Cl'].replace(',', '.'))
+    query += '{0}, '.format(sample['CaO'].replace(',', '.'))
+    query += '{0}, '.format(sample['MgO'].replace(',', '.'))
+    query += '{0}, '.format(sample['SO3'].replace(',', '.'))
+    query += '{0}, '.format(sample['SO4'].replace(',', '.'))
+    query += '{0}, '.format(sample['KBr'].replace(',', '.'))
+    query += '{0}, '.format(sample['CaSO4'].replace(',', '.'))
+    query += '{0}, '.format(sample['MgSO4'].replace(',', '.'))
+    query += '{0}, '.format(sample['KCl'].replace(',', '.'))
+    query += '{0}, '.format(sample['NaCl'].replace(',', '.'))
+    query += '{0}, '.format(sample['CaCl2'].replace(',', '.'))
+    query += '{0}, '.format(sample['MgCl2'].replace(',', '.'))
+    query += '{0}, '.format(sample['NaBr'].replace(',', '.'))
+    query += '{0}, '.format(sample['stezenie_roztworu_z_soli'].replace(',', '.'))
+    query += '{0}, '.format(sample['stezenie_roztworu_z_jonow'].replace(',', '.'))
+    query += '{0}, '.format(sample['stezenie_roztworu_w_h2o_z_soli'].replace(',', '.'))
+    query += '{0}, '.format(sample['stezenie_roztoworu_w_h2o_z_jonow'].replace(',', '.'))
+    query += '{0}, '.format(sample['stezenie_ca_mg_w_h2o_z_soli'].replace(',', '.'))
+    query += '{0}, '.format(sample['steznie_na_k_w_h2o_z_soli'].replace(',', '.'))
+    query += '{0}, '.format(sample['steznie_na_k_ca_mg_w_h2o_z_soli'].replace(',', '.'))
+    query += '{0}, '.format(sample['poprawka_na_tlen_z_soli'].replace(',', '.'))
+    query += '{0}, '.format(sample['poprawka_na_tlen_z_jonow'].replace(',', '.'))
+    query += '{0}, '.format(sample['poprawka_na_deuter_z_soli'].replace(',', '.'))
+    query += '{0})'.format(sample ['poprawka_na_deuter_z_jonow'].replace(',', '.'))
+    query = query.replace(' ,', ' NULL,')
+    query = query.replace(' )', ' NULL)')
+    executeQuery(query)
 
-def getChemistryData(sample_number):
-    conn = sqlite3.connect('data.db')
-    c = conn.cursor()
-    query = 'select * from samples where kod_probki = "{0}"'.format(sample_number)
-    for row in c.execute(query):
-        r = row
-    chemistryData = dict_factory(c, r)
-    conn.close()
-    return chemistryData
-
-def getAllChemistryData(year = ''):
-    conn = sqlite3.connect('data.db')
-    c = conn.cursor()
-    query = 'select * from results left join samples on results.nr_probki = samples.kod_probki'
-    if year != "":
-        query += ' WHERE results.data_pobrania like "{0}%"'.format(year)
-    samples = []
-    for row in c.execute(query):
-        r = row
-        chemistryData = dict_factory(c, r)
-        samples.append(chemistryData)
-    conn.close()
-    return samples
-
+def deleteSample(id):
+    query = "DELETE from results where id={0}".format(id)
+    executeQuery(query)
 
 #Isotope operations
 def getAllIsotopes():
