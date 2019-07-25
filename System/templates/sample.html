@@ -9,7 +9,7 @@
 				  <th scope="col" class="poziom">poziom</th>
 				  <th scope="col" class="nr_probki">nr_probki</th>
 				  <th scope="col" class="data_pobrania">data_pobrania</th>
-				  <th scope="col" class="gestosc">gestosc</th>
+				  <th scope="col" class="gestosc">gęstosc</th>
 				  <th scope="col" class="ph">ph</th>
 				  <th scope="col" class="k">K+</th>
 				  <th scope="col" class="ca">Ca++</th>
@@ -28,6 +28,17 @@
 				  <th scope="col" class="cacl2">CaCl2</th>
 				  <th scope="col" class="mgcl2">MgCl2</th>
 				  <th scope="col" class="nabr">NaBr</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_z_soli">Stężenie</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_z_jonow">Stężenie</br>z jonów</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_w_h2o_z_soli">w H2O</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_roztoworu_w_h2o_z_jonow">w H2O</br>z jonów</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_ca_mg_w_h2o_z_soli">Ca+Mg</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="steznie_na_k_w_h2o_z_soli">Na+K</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="steznie_na_k_ca_mg_w_h2o_z_soli">Na+K+Ca+Mg</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_tlen_z_soli">P. tlen</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_tlen_z_jonow">P. tlen</br>z jonów</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_deuter_z_soli">P. deuter</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_deuter_z_jonow">P. deuter</br>z jonów</th>
 				  <th scope="col" >Edytuj</th>
   			  </tr>
   			</thead>
@@ -57,133 +68,23 @@
 				  <td class="cacl2">{{sample.CaCl2}}</td>
 				  <td class="mgcl2">{{sample.MgCl2}}</td>
 				  <td class="nabr">{{sample.NaBr}}</td>
+				  <td style="min-width: 100px" class="stezenie_roztworu_z_soli">{{(sample.stezenie_roztworu_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="stezenie_roztworu_z_jonow">{{(sample.stezenie_roztworu_z_jonow|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="stezenie_roztworu_w_h2o_z_soli">{{(sample.stezenie_roztworu_w_h2o_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="stezenie_roztoworu_w_h2o_z_jonow">{{(sample.stezenie_roztoworu_w_h2o_z_jonow|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="stezenie_ca_mg_w_h2o_z_soli">{{(sample.stezenie_ca_mg_w_h2o_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="steznie_na_k_w_h2o_z_soli">{{(sample.steznie_na_k_w_h2o_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="steznie_na_k_ca_mg_w_h2o_z_soli">{{(sample.steznie_na_k_ca_mg_w_h2o_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="poprawka_na_tlen_z_soli">{{(sample.poprawka_na_tlen_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="poprawka_na_tlen_z_jonow">{{(sample.poprawka_na_tlen_z_jonow|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="poprawka_na_deuter_z_soli">{{(sample.poprawka_na_deuter_z_soli|float)|round(2)}}</td>
+				  <td style="min-width: 100px" class="poprawka_na_deuter_z_jonow">{{(sample.poprawka_na_deuter_z_jonow|float)|round(2)}}</td>
 				  <td> <a href="/editSample/{{sample.id}}"><img src="{{ url_for('static', filename = 'editIcon.png') }}"  width="50%" height="50%"/></a></td>
   			  </tr>
 			  {% endfor %}
   			</tbody>
 		</table>
 	</div>
-{% if chemistryData is defined %}
-	<div>
-	<table>
-		<tr><td></td></tr>
-		<tr><td></td></tr>
-		<tr>
-			<th style="width:50%">Gęstość roztworu w [g/ml] roztworu</th>
-			<td>{{samples[0].gestosc}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie roztworu w [g/l] roztworu wyliczone z soli </th>
-			<td>{{chemistryData.stezenie_roztworu_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie roztworu w [g/l] roztworu wyliczone z jonów</th>
-			<td>{{chemistryData.stezenie_roztworu_z_jonow}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie roztworu w [g/kg] H2O wyliczone z soli </th>
-			<td>{{chemistryData.stezenie_roztworu_w_h2o_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie roztworu w [g/kg] H2O wyliczone z jonów</th>
-			<td>{{chemistryData.stezenie_roztoworu_w_h2o_z_jonow}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli </th>
-			<td>{{chemistryData.stezenie_ca_mg_w_h2o_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie Na + K w [mol/kg] H2O wyliczone z soli </th>
-			<td>{{chemistryData.steznie_na_k_w_h2o_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Stężenie  Na + K + Ca + Mg  w [mol/kg] H2O wyliczone z soli </th>
-			<td>{{chemistryData.steznie_na_k_ca_mg_w_h2o_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Poprawka na tlen obliczona z soli</th>
-			<td>{{chemistryData.poprawka_na_tlen_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Poprawka na tlen obliczona z jonów</th>
-			<td>{{chemistryData.poprawka_na_tlen_z_jonow}}</td>
-		</tr>
-		<tr>
-			<th>Poprawka na deuter obliczona z soli</th>
-			<td>{{chemistryData.poprawka_na_deuter_z_soli}}</td>
-		</tr>
-		<tr>
-			<th>Poprawka na deuter obliczona z jonów</th>
-			<td>{{chemistryData.poprawka_na_deuter_z_jonow}}</td>
-		</tr>
-		<tr><td></td></tr>
-	</table>
-		<table>
-			<thead>
-				<tr>
-					<th>Jony</th>
-					<th>Stężenie dane [g/l]</th>
-					<th>Stężenie obliczone [g/l]</th>
-					<th>Sole</th>
-					<th>Stężenie [g/l]</th>
-				</tr>
-			</thead>
-			<tr>
-				<td>Ca</td>
-				<td>{{chemistryData.ca}}</td>
-				<td>{{chemistryData.stezenie_obliczone_ca}}</td>
-				<td>CaCl2</td>
-				<td>{{chemistryData.cacl2}}</td>
-			</tr>
-			<tr>
-				<td>Mg</td>
-				<td>{{chemistryData.mg}}</td>
-				<td>{{chemistryData.stezenie_obliczone_mg}}</td>
-				<td>MgCl2</td>
-				<td>{{chemistryData.mgcl2}}</td>
-			</tr>
-			<tr>
-				<td>K</td>
-				<td>{{chemistryData.k}}</td>
-				<td>{{chemistryData.stezenie_obliczone_k}}</td>
-				<td>KCl</td>
-				<td>{{chemistryData.kcl}}</td>
-			</tr>
-			<tr>
-				<td>Na</td>
-				<td>{{chemistryData.na}}</td>
-				<td>{{chemistryData.stezenie_obliczone_na}}</td>
-				<td>NaCl</td>
-				<td>{{chemistryData.nacl}}</td>
-			</tr>
-			<tr>
-				<td>Cl</td>
-				<td>{{chemistryData.cl}}</td>
-				<td>{{chemistryData.stezenie_obliczone_cl}}</td>
-				<td>MgSO4</td>
-				<td>{{chemistryData.mgso4}}</td>
-			</tr>
-			<tr>
-				<td>SO4</td>
-				<td>{{chemistryData.so4}}</td>
-				<td>{{chemistryData.stezenie_obliczone_so4}}</td>
-				<td>CaSO4</td>
-				<td>{{chemistryData.caso4}}</td>
-			</tr>
-			<tr>
-				<td>Br</td>
-				<td>{{chemistryData.br}}</td>
-				<td>{{chemistryData.stezenie_obliczone_br}}</td>
-				<td>KBr</td>
-				<td>{{chemistryData.kbr}}</td>
-			</tr>
-			<tr><td></td>
-			</tr>
-			<tr><td></td>
-			</tr>
-		</table>
-	</div>
-{% endif %}
 		<script>
 $(document).ready(function(){
 	{% for key, value in config.items() %}
