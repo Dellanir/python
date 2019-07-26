@@ -48,7 +48,7 @@ def editIsotope(id):
         updateIsotope(id, request.form)
     isotope = getIsotope(id)
     isotopes = [isotope]
-    convertNulls(isotopes)
+    convertNulls(isotopes, character='')
     return render_template('editIsotope.html', isotope=isotopes[0], edited=edited)
 
 @app.route('/addIsotope', methods = ['GET', 'POST'])
@@ -170,8 +170,7 @@ def chartsChemistry():
     if request.method == "GET":
         return render_template('chart.html')
     year = request.form['year']
-    #samples = getAllSamples()
-    chemData = getAllChemistryData(year)
+    chemData = getAllSamples() if year == '' else getAllSamples()
     result = {}
     result['y_axis'] = [ float(x['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore')) for x in chemData if x['stezenie_ca_mg_w_h2o_z_soli'] is not None ]
     result['x_axis'] = [ float(x['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore')) for x in chemData if x['steznie_na_k_w_h2o_z_soli'] is not None ]

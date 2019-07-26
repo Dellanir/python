@@ -186,7 +186,8 @@ def getIsotope(id):
 
 def updateIsotope(id, isotope):
     query = 'UPDATE izotopy SET '
-    query += "nr_kopalni = '{0}', ".format(isotope['nr_kopalni'].replace(',', '.'))
+    query += "nr_probki = '{0}', ".format(isotope['nr_probki'].replace(',', '.'))
+    query += "poziom = '{0}', ".format(isotope['poziom'].replace(',', '.'))
     query += "nr_zjawiska = '{0}', ".format(isotope['nr_zjawiska'].replace(',', '.'))
     query += "data_poboru = '{0}', ".format(isotope['data_poboru'].replace(',', '.'))
     query += "camg = '{0}', ".format(isotope['camg'].replace(',', '.'))
@@ -199,9 +200,10 @@ def updateIsotope(id, isotope):
     executeQuery(query)
 
 def addIsotope(isotope):
-    query = 'INSERT into izotopy(nr_kopalni, nr_zjawiska, data_poboru, camg, nak, d18o, dd) values ('
-    query += '"{0}", '.format(isotope['nr_kopalni'])
+    query = 'INSERT into izotopy(nr_probki, nr_zjawiska, poziom, data_poboru, camg, nak, d18o, dd) values ('
+    query += '"{0}", '.format(isotope['nr_probki'])
     query += '"{0}", '.format(isotope['nr_zjawiska'])
+    query += '"{0}", '.format(isotope['poziom'])
     query += '"{0}", '.format(isotope['data_poboru'])
     query += '"{0}", '.format(isotope['camg'])
     query += '"{0}", '.format(isotope['nak'])

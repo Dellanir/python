@@ -10,6 +10,7 @@
   			  <tr>
 				  <th scope="col" class="nr_kopalni">Nr kopalni</th>
 				  <th scope="col" class="nr_zjawiska">Nr zjawiska</th>
+				  <th scope="col" class="poziom">poziom</th>
 				  <th scope="col" class="data_poboru">Data poboru</th>
 				  <th scope="col" class="camg">CaMg</th>
 				  <th scope="col" class="nak">NaK</th>
@@ -21,8 +22,9 @@
   			<tbody>
 			  {% for isotope in isotopes %}
   			  <tr>
-				  <td class="nr_kopalni">{{isotope.nr_kopalni}}</td>
+				  <td class="nr_probki">{{isotope.nr_probki}}</td>
 				  <td class="nr_zjawiska">{{isotope.nr_zjawiska}}</td>
+				  <td class="poziom">{{isotope.poziom}}</td>
 				  <td class="data_poboru">{{isotope.data_poboru}}</td>
 				  <td class="camg">{{isotope.camg}}</td>
 				  <td class="nak">{{isotope.nak}}</td>
