@@ -189,13 +189,14 @@ def charts():
             point = {}
             point['y'] = round(float(sample['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore')),2)
             point['x'] = round(float(sample['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore')),2)
-            point['label'] = sample['nr_probki']
+            point['nr_probki'] = sample['nr_probki']
             data.append(point)
     for i, isotope in enumerate(isotopes):
         if isotope['d18o'] != '' and isotope['dd'] != '':
             point = {}
             point['y'] = getAvgValue(isotope, "dd")
             point['x'] = getAvgValue(isotope, "d18o")
+            point['nr_probki'] = isotope['nr_probki']
             delta.append(point)
     return render_template('chart-chem.html', data=data, delta=delta, year=year, event=event, level=level)
 

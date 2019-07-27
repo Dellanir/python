@@ -30,6 +30,7 @@
 new Chart(document.getElementById("chemistry-chart"), {
   type: 'scatter',
  data: {
+ 		labels: [{% for point in delta %}"Nr próbki: {{point.nr_probki}}",{% endfor %},"" ],
         datasets: [{
             label: 'Scatter Dataset',
             data: [
@@ -37,14 +38,25 @@ new Chart(document.getElementById("chemistry-chart"), {
             {
                 x: {{point.x}},
                 y: {{point.y}},
+                nr_probki: "{{point.nr_probki}}"
             },
             {% endfor %}
             ],
             borderColor: "#000000",
             backgroundColor: "#FF0000",
+            pointRadius: 5,
+            pointHoverRadius: 8
         }]
     },
     options: {
+    	tooltips: {
+     		callbacks: {
+        		label: function(tooltipItem, data) {
+               		var label = data.labels[tooltipItem.index];
+               		return label + ':\n Na+K:' + tooltipItem.xLabel + ', Ca+Mg:' + tooltipItem.yLabel;
+            	}
+     		}
+		},
     	title: {
             display: true,
             text: 'Wykres danych chemicznych',
@@ -101,6 +113,7 @@ new Chart(document.getElementById("chemistry-chart"), {
 new Chart(document.getElementById("isotope-chart"), {
   type: 'scatter',
  data: {
+ 		labels: [{% for point in delta %}"Nr próbki: {{point.nr_probki}}",{% endfor %},"" ],
         datasets: [{
             label: 'Scatter Dataset',
             data: [
@@ -108,15 +121,25 @@ new Chart(document.getElementById("isotope-chart"), {
             {
                 x: {{point.x}},
                 y: {{point.y}},
-
+                nr_probki: "{{point.nr_probki}}"
             },
             {% endfor %}
             ],
             borderColor: "#000000",
             backgroundColor: "#FF0000",
+            pointRadius: 5,
+            pointHoverRadius: 8,
         }]
     },
     options: {
+		tooltips: {
+     		callbacks: {
+        		label: function(tooltipItem, data) {
+               		var label = data.labels[tooltipItem.index];
+               		return label + ':\n δ18O:' + tooltipItem.xLabel + ', δ2H:' + tooltipItem.yLabel;
+            	}
+     		}
+		},
     	title: {
             display: true,
             text: 'Wykres danych izotopwych',
@@ -149,7 +172,7 @@ new Chart(document.getElementById("isotope-chart"), {
             yAxes: [{
                 scaleLabel: {
         			display: true,
-        			labelString: 'δ2H SMOW',
+        			labelString: 'δ2H [%] SMOW',
         			fontSize: 14,
             		fontColor: '#000000',
             		fontStyle: "bold",
@@ -166,6 +189,12 @@ new Chart(document.getElementById("isotope-chart"), {
         }
     }
 });
+
+function getNrProbki(tooltipItem, datasets) {
+    return datasets[tooltipItem.datasetIndex].data.find(datum => {
+        return datum.x === tooltipItem.xLabel && datum.y === tooltipItem.yLabel;
+    }).nr_probki;
+}
 </script>
 {% endif %}
 
