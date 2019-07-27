@@ -6,29 +6,28 @@
 <div>
 	<form method="POST" action="/charts">
 		&nbsp; Nr zjawiska: <input type="text" name="event" value="{{event}}">
-		&nbsp; Poziom: <input type="text" name="level" value="{{level}}">
-		&nbsp;<input type="submit" value="Rysuj!">
-	</form>
-</div>
-</br>
-<div>
-	<form method="POST" action="/charts-chemistry">
+		&nbsp; Poziom: <input type="text" name="level" value="{{level}}"></br>
 		&nbsp; Rok: <input type="text" name="year" value="{{year}}">
 		&nbsp;<input type="submit" value="Rysuj!"> (Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli || Stężenie Na + K w [mol/kg] H2O wyliczone z soli)
 	</form>
 </div>
 
+<hr>
 
-
-
+{% if data is defined %}
 
 <div>
-<canvas id="line-chart" ></canvas>
+<canvas id="chemistry-chart" ></canvas>
+</div>
+</br><hr><hr></br>
+<div>
+<canvas id="isotope-chart" ></canvas>
 </div>
 </br></br>
 
+
 <script>
-new Chart(document.getElementById("line-chart"), {
+new Chart(document.getElementById("chemistry-chart"), {
   type: 'scatter',
  data: {
         datasets: [{
@@ -66,5 +65,45 @@ new Chart(document.getElementById("line-chart"), {
     }
 });
 </script>
+<script>
+new Chart(document.getElementById("isotope-chart"), {
+  type: 'scatter',
+ data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: [
+            {% for point in delta %}
+            {
+                x: {{point.x}},
+                y: {{point.y}},
+
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#000000",
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom',
+                scaleLabel: {
+        			display: true,
+        			labelString: 'd18O'
+      			}
+            }],
+            yAxes: [{
+                scaleLabel: {
+        			display: true,
+        			labelString: 'dD'
+      			}
+            }]
+        }
+    }
+});
+</script>
+{% endif %}
 
 {% endblock %}

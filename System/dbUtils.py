@@ -268,3 +268,25 @@ def importBackup(backupName):
 def getBackupList():
     backupList = [ file.split('\\')[-1] for file in glob.glob('db_backup\\*.db') ]
     return backupList
+
+def getSampleYear(sample):
+    try:
+        year = sample['data_pobrania'][:4]
+    except:
+        year = ''
+    return year
+
+def getIsotopeYear(isotope):
+    try:
+        year = isotope['data_poboru'][:4]
+    except:
+        year = ''
+    return year
+
+def getAvgValue(isotope, type):
+    try:
+        elements = map(float, isotope[type].split(' '))
+        value = round(sum(elements)/len(elements),2)
+    except:
+        value = 0
+    return value

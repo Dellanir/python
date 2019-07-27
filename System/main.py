@@ -163,44 +163,40 @@ def helpPage():
 @app.route('/charts', methods=['GET', 'POST'])
 def charts():
     if request.method == "GET":
-        return render_template('chart.html')
+        return render_template('chart-chem.html')
+    year = request.form['year']
     event = request.form['event']
     level = request.form['level']
-    if event != "" and level != "":
-        samples = getSamplesByEventAndLevel(event, level)
-    if event == "" and level == "":
-        samples = getAllSamples()
-    if event != "" and level == "":
-        samples = getSamplesByEvent(event)
-    if event == "" and level != "":
-        samples = getSamplesByLevel(level)
-    if len(samples)==0:
-        return render_template('chart.html', event=event, level=level)
-    results = {}
-    for key in samples[0]:
-        results[key] = [ x[key] for x in samples ]
-        if None in results[key]:
-            results.pop(key)
-    return render_template('chart.html', results=results, samples=samples, event=event, level=level)
-
-@app.route('/charts-chemistry', methods=['GET', 'POST'])
-def chartsChemistry():
-    if request.method == "GET":
-        return render_template('chart.html')
-    year = request.form['year']
-    chemData = getAllSamples() if year == '' else getAllSamples()
-    result = {}
-    result['y_axis'] = [ float(x['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore')) for x in chemData if x['stezenie_ca_mg_w_h2o_z_soli'] is not None ]
-    result['x_axis'] = [ float(x['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore')) for x in chemData if x['steznie_na_k_w_h2o_z_soli'] is not None ]
+    if event != '' and level != '':
+        isotopes = getIsotopesByLevelAndEvent(level, event)
+        chemData = getSamplesByEventAndLevel(event, level)
+    if event == '' and level != '':
+        isotopes = getIsotopesByLevel(level)
+        chemData = getSamplesByLevel(level)
+    if event != '' and level == '':
+        isotopes = getIsotopesByEvent(event)
+        chemData = getSamplesByEvent(event)
+    if event == '' and level == '':
+        chemData = getAllSamples()
+        isotopes = getAllIsotopes()
+    if year != '':
+        chemData = [x for x in chemData if getSampleYear(x) == year]
+        isotopes = [x for x in isotopes if getIsotopeYear(x) == year]
     data = []
-    for i,x in enumerate(chemData):
-        if x['stezenie_ca_mg_w_h2o_z_soli'] is not None:
+    delta = []
+    for i,sample in enumerate(chemData):
+        if sample['stezenie_ca_mg_w_h2o_z_soli'] is not None:
             point = {}
-            point['y'] = float(x['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore'))
-            point['x'] = float(x['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore'))
+            point['y'] = float(sample['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore'))
+            point['x'] = float(sample['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore'))
             data.append(point)
-    print data
-    return render_template('chart-chem.html', chemData=chemData, result=result, data=data)
+    for i, isotope in enumerate(isotopes):
+        if isotope['d18o'] != '' and isotope['dd'] != '':
+            point = {}
+            point['y'] = getAvgValue(isotope, "dd")
+            point['x'] = getAvgValue(isotope, "d18o")
+            delta.append(point)
+    return render_template('chart-chem.html', data=data, delta=delta, year=year, event=event, level=level)
 
 @app.route('/info')
 def infoPage():
