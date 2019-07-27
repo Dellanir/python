@@ -37,29 +37,61 @@ new Chart(document.getElementById("chemistry-chart"), {
             {
                 x: {{point.x}},
                 y: {{point.y}},
-
             },
             {% endfor %}
             ],
             borderColor: "#000000",
-            backgroundColor: "#000000",
+            backgroundColor: "#FF0000",
         }]
     },
     options: {
+    	title: {
+            display: true,
+            text: 'Wykres danych chemicznych',
+            fontSize: 18,
+            fontColor: '#000000'
+        },
+        legend: {
+    		display: false
+    	},
         scales: {
             xAxes: [{
                 type: 'linear',
                 position: 'bottom',
                 scaleLabel: {
         			display: true,
-        			labelString: 'Stężenie Na + K w [mol/kg] H2O wyliczone z soli'
-      			}
+        			labelString: 'Stężenie Na + K w [mol/kg] H2O wyliczone z soli',
+        			fontSize: 14,
+            		fontColor: '#000000',
+            		fontStyle: "bold",
+      			},
+      			ticks: {
+      				min: 0,
+      				max: 8
+      			},
+      			gridLines: {
+  					color: "#000000",
+  					zeroLineColor: "#000000",
+  					zeroLineWidth: 3
+				}
             }],
             yAxes: [{
                 scaleLabel: {
         			display: true,
-        			labelString: 'Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli'
-      			}
+        			labelString: 'Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli',
+        			fontSize: 14,
+            		fontColor: '#000000',
+            		fontStyle: "bold",
+      			},
+      			ticks: {
+      				min: 0,
+      				max: 7
+      			},
+      			gridLines: {
+  					color: "#000000",
+  					zeroLineColor: "#000000",
+  					zeroLineWidth: 3
+				}
             }]
         }
     }
@@ -81,24 +113,55 @@ new Chart(document.getElementById("isotope-chart"), {
             {% endfor %}
             ],
             borderColor: "#000000",
-            backgroundColor: "#000000",
+            backgroundColor: "#FF0000",
         }]
     },
     options: {
+    	title: {
+            display: true,
+            text: 'Wykres danych izotopwych',
+            fontSize: 18,
+            fontColor: '#000000'
+        },
+    	legend: {
+    		display: false
+    	},
         scales: {
             xAxes: [{
                 type: 'linear',
                 position: 'bottom',
                 scaleLabel: {
         			display: true,
-        			labelString: 'd18O'
-      			}
+        			labelString: 'δ18O [%] SMOW',
+        			fontSize: 14,
+            		fontColor: '#000000',
+            		fontStyle: "bold",
+      			},
+      			ticks: {
+      				min: -10,
+      				max: 10
+      			},
+      			gridLines: {
+  					color: "#000000",
+  					zeroLineColor: "#000000"
+				}
             }],
             yAxes: [{
                 scaleLabel: {
         			display: true,
-        			labelString: 'dD'
-      			}
+        			labelString: 'δ2H SMOW',
+        			fontSize: 14,
+            		fontColor: '#000000',
+            		fontStyle: "bold",
+      			},
+      			ticks: {
+      				min: -90,
+      				max: 10
+      			},
+      			gridLines: {
+  					color: "#000000",
+  					zeroLineColor: "#000000"
+				}
             }]
         }
     }

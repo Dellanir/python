@@ -187,8 +187,9 @@ def charts():
     for i,sample in enumerate(chemData):
         if sample['stezenie_ca_mg_w_h2o_z_soli'] is not None:
             point = {}
-            point['y'] = float(sample['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore'))
-            point['x'] = float(sample['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore'))
+            point['y'] = round(float(sample['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore')),2)
+            point['x'] = round(float(sample['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore')),2)
+            point['label'] = sample['nr_probki']
             data.append(point)
     for i, isotope in enumerate(isotopes):
         if isotope['d18o'] != '' and isotope['dd'] != '':
