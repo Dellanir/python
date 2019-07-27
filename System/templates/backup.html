@@ -5,18 +5,19 @@
 	<div>
 		<b> Tu można zapisać kopię zapasową bazy danych lub ją wczytać.</b>
 		{% if backupSavedName and not backupLoadedName %}	<span class="badge badge-success">Wyeksportowano kopię zapasową {{backupSavedName}}</span>	{% endif %}
-		{% if backupSavedName and backupLoadedName %}	<span class="badge badge-success">Wczytano kopię zapasową {{backupLoadedName}} oraz zapisano nową kopię {{backupSavedName}}</span>	{% endif %}
+		{% if backupSavedName and backupLoadedName %}	<span class="badge badge-success">Wczytano kopię zapasową {{backupLoadedName}}</span>	{% endif %}
 	<span></br></br></span>
 	</div>
 	<div>
 		<form method="POST" action="/backupSave">
-			<span>Utworz kopią zapasową</span>
+			<span>Utworz kopią zapasową. </span></br>
+			Nazwa: <input type="text" value="" name="nazwa">
 			<input type="submit" value="Utwórz">
 		</form>
 		<h2></br></h2>
 		<h2></br></h2>
 		<form method="POST" action="/backupLoad">
-			<span>Wczytaj kopię zapasową</span>
+			<span>Wczytaj kopię zapasową (Wprowadzone zmiany zostaną utracone!)</span>
 			<input type="submit" value="Wczytaj">
 			<select name="name" id="name">
 				{% for backup in backupList %}<option value="{{backup}}">{{backup}}</option>

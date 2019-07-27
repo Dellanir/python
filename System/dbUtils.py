@@ -174,6 +174,39 @@ def getAllIsotopes():
     conn.close()
     return isotopes
 
+def getIsotopesByLevel(level):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from izotopy where poziom = {0}'.format(level)
+    isotopes = []
+    for row in cursor.execute(query):
+        isotope = dict_factory(cursor, row)
+        isotopes.append(isotope)
+    conn.close()
+    return isotopes
+
+def getIsotopesByEvent(event):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from izotopy where nr_zjawiska = {0}'.format(event)
+    isotopes = []
+    for row in cursor.execute(query):
+        isotope = dict_factory(cursor, row)
+        isotopes.append(isotope)
+    conn.close()
+    return isotopes
+
+def getIsotopesByLevelAndEvent(level, event):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    query = 'select * from izotopy where nr_zjawiska = {0} and poziom = {1}'.format(event, level)
+    isotopes = []
+    for row in cursor.execute(query):
+        isotope = dict_factory(cursor, row)
+        isotopes.append(isotope)
+    conn.close()
+    return isotopes
+
 def getIsotope(id):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
@@ -223,9 +256,9 @@ def convertNulls(sampleList, character='--'):
             if value==None:
                 sampleList[index][key]=character
 
-def exportBackup():
+def exportBackup(name=''):
     today = str(datetime.datetime.today()).split('.')[0]
-    backupName = today.replace(' ','_').replace(':','-') + '.db'
+    backupName = (name + '_' + today).replace(' ','_').replace(':','-') + '.db'
     shutil.copy('data.db', 'db_backup\\{0}'.format(backupName))
     return backupName
 

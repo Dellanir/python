@@ -40,6 +40,24 @@ def isotopes():
     convertNulls(isotopes)
     return render_template('isotope.html', isotopes=isotopes)
 
+@app.route('/isotopesLevel/<int:level>')
+def isotopesLevel(level):
+    isotopes = getIsotopesByLevel(level)
+    convertNulls(isotopes)
+    return render_template('isotope.html', isotopes=isotopes)
+
+@app.route('/isotopesEvent/<int:event>')
+def isotopesEvent(event):
+    isotopes = getIsotopesByEvent(event)
+    convertNulls(isotopes)
+    return render_template('isotope.html', isotopes=isotopes)
+
+@app.route('/isotopesEventAndLevel/<int:event>/<int:level>')
+def isotopesEventAndLevel(event, level):
+    isotopes = getIsotopesByLevelAndEvent(level, event)
+    convertNulls(isotopes)
+    return render_template('isotope.html', isotopes=isotopes)
+
 @app.route('/editIsotope/<int:id>', methods = ['GET', 'POST'])
 def editIsotope(id):
     edited = False
@@ -204,18 +222,18 @@ def backup():
 
 @app.route('/backupSave', methods=['POST'])
 def backupSave():
-    backupSavedName = exportBackup()
+    name = request.form['nazwa']
+    backupSavedName = exportBackup(name)
     backupList = getBackupList()
     return render_template('backup.html', backupList=backupList, backupSavedName=backupSavedName)
 
 @app.route('/backupLoad', methods=['POST'])
 def backupLoad():
     backupLoadedName = request.form['name']
-    backupSavedName = exportBackup()
+    #backupSavedName = exportBackup()
     importBackup(backupLoadedName)
     backupList = getBackupList()
-    return render_template('backup.html', backupList=backupList, backupSavedName=backupSavedName,
-                           backupLoadedName=backupLoadedName)
+    return render_template('backup.html', backupList=backupList, backupLoadedName=backupLoadedName)
 
 if __name__ == '__main__':
    config = configparser.ConfigParser()
