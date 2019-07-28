@@ -4,6 +4,7 @@ import os
 import datetime
 import shutil
 import glob
+import datetime
 
 #Helpers
 def executeQuery(query):
@@ -269,20 +270,6 @@ def getBackupList():
     backupList = [ file.split('\\')[-1] for file in glob.glob('db_backup\\*.db') ]
     return backupList
 
-def getSampleYear(sample):
-    try:
-        year = sample['data_pobrania'][:4]
-    except:
-        year = ''
-    return year
-
-def getIsotopeYear(isotope):
-    try:
-        year = isotope['data_poboru'][:4]
-    except:
-        year = ''
-    return year
-
 def getAvgValue(isotope, type):
     try:
         elements = map(float, isotope[type].split(' '))
@@ -290,3 +277,10 @@ def getAvgValue(isotope, type):
     except:
         value = 0
     return value
+
+def getDate(date):
+    try:
+        date = datetime.datetime.strptime(date, "%Y-%m-%d")
+    except:
+        date = datetime.datetime.strptime("0001-01-01", "%Y-%m-%d")
+    return date

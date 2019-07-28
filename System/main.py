@@ -164,7 +164,8 @@ def helpPage():
 def charts():
     if request.method == "GET":
         return render_template('chart-chem.html')
-    year = request.form['year']
+    fromDate = request.form['fromDate']
+    toDate = request.form['toDate']
     event = request.form['event']
     level = request.form['level']
     if event != '' and level != '':
@@ -179,9 +180,12 @@ def charts():
     if event == '' and level == '':
         chemData = getAllSamples()
         isotopes = getAllIsotopes()
-    if year != '':
-        chemData = [x for x in chemData if getSampleYear(x) == year]
-        isotopes = [x for x in isotopes if getIsotopeYear(x) == year]
+    if fromDate != '':
+        chemData = [x for x in chemData if getDate(x['data_pobrania']) > getDate(fromDate)]
+        isotopes = [x for x in isotopes if getDate(x['data_poboru']) > getDate(fromDate)]
+    if toDate != '':
+        chemData = [x for x in chemData if getDate(x['data_pobrania']) < getDate(toDate)]
+        isotopes = [x for x in isotopes if getDate(x['data_poboru']) < getDate(toDate)]
     data = []
     delta = []
     for i,sample in enumerate(chemData):
@@ -190,6 +194,8 @@ def charts():
             point['y'] = round(float(sample['stezenie_ca_mg_w_h2o_z_soli'].encode('ascii', 'ignore')),2)
             point['x'] = round(float(sample['steznie_na_k_w_h2o_z_soli'].encode('ascii', 'ignore')),2)
             point['nr_probki'] = sample['nr_probki']
+            point['nr_zjawiska'] = sample['nr_zjawiska']
+            point['poziom'] = sample['poziom']
             data.append(point)
     for i, isotope in enumerate(isotopes):
         if isotope['d18o'] != '' and isotope['dd'] != '':
@@ -197,8 +203,10 @@ def charts():
             point['y'] = getAvgValue(isotope, "dd")
             point['x'] = getAvgValue(isotope, "d18o")
             point['nr_probki'] = isotope['nr_probki']
+            point['nr_zjawiska'] = sample['nr_zjawiska']
+            point['poziom'] = sample['poziom']
             delta.append(point)
-    return render_template('chart-chem.html', data=data, delta=delta, year=year, event=event, level=level)
+    return render_template('chart-chem.html', data=data, delta=delta, fromDate=fromDate, toDate=toDate, event=event, level=level)
 
 @app.route('/info')
 def infoPage():

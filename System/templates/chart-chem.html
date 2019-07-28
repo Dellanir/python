@@ -7,8 +7,8 @@
 	<form method="POST" action="/charts">
 		&nbsp; Nr zjawiska: <input type="text" name="event" value="{{event}}">
 		&nbsp; Poziom: <input type="text" name="level" value="{{level}}"></br>
-		&nbsp; Rok: <input type="text" name="year" value="{{year}}">
-		&nbsp;<input type="submit" value="Rysuj!"> (Stężenie Ca + Mg w [mol/kg] H2O wyliczone z soli || Stężenie Na + K w [mol/kg] H2O wyliczone z soli)
+		&nbsp; Od daty: <input type="text" name="fromDate" value="{{fromDate}}"> do daty <input type="text" name="toDate" value="{{toDate}}"> (format daty RRRR-MM-DD).
+		&nbsp;<input type="submit" value="Rysuj!">
 	</form>
 </div>
 
@@ -30,7 +30,7 @@
 new Chart(document.getElementById("chemistry-chart"), {
   type: 'scatter',
  data: {
- 		labels: [{% for point in delta %}"Nr próbki: {{point.nr_probki}}",{% endfor %},"" ],
+ 		labels: [{% for point in delta %}"{{point.nr_probki}} ({{point.nr_zjawiska}}/{{point.poziom}})",{% endfor %},"" ],
         datasets: [{
             label: 'Scatter Dataset',
             data: [
@@ -113,7 +113,7 @@ new Chart(document.getElementById("chemistry-chart"), {
 new Chart(document.getElementById("isotope-chart"), {
   type: 'scatter',
  data: {
- 		labels: [{% for point in delta %}"Nr próbki: {{point.nr_probki}}",{% endfor %},"" ],
+ 		labels: [{% for point in delta %}"{{point.nr_probki}} ({{point.nr_zjawiska}}/{{point.poziom}})",{% endfor %},"" ],
         datasets: [{
             label: 'Scatter Dataset',
             data: [
