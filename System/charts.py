@@ -104,3 +104,20 @@ jezor2 = [
     {'x': 5, 'y': -21.25},
     {'x': 6, 'y': -19.5}
 ]
+
+def lineGenerator(a, b, pointsNumber):
+    pointList = []
+    xRange = b['x'] - a['x']
+    yRange = b['y'] - a['y']
+    xStep = xRange / float(pointsNumber)
+    yStep = yRange / float(pointsNumber)
+    for i in range(0, pointsNumber+1):
+        pointList.append({ 'x': round(a['x'] + i*xStep, 2), 'y': round(a['y'] + i*yStep, 2) })
+    return pointList
+
+wmwl = lineGenerator(wmwl[0], wmwl[1], 100)
+gorneParowanie = lineGenerator(gorneParowanie[0], gorneParowanie[1], 30)
+dolneParowanie = lineGenerator(dolneParowanie[0], dolneParowanie[1], 60)
+koncoweParowanie = koncoweParowanie + lineGenerator(koncoweParowanie[5], koncoweParowanie[7], 10)
+jezor = jezor + lineGenerator(jezor[0], jezor[7], 30)
+jezor = jezor + lineGenerator(jezor[18], jezor[26], 30)
