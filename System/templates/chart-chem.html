@@ -85,7 +85,7 @@ new Chart(document.getElementById("chemistry-chart"), {
             fontColor: '#000000'
         },
         legend: {
-    		display: false
+    		display: true
     	},
         scales: {
             xAxes: [{
@@ -136,13 +136,12 @@ new Chart(document.getElementById("isotope-chart"), {
  data: {
  		labels: [{% for point in delta %}"{{point.nr_probki}} ({{point.nr_zjawiska}}/{{point.poziom}})",{% endfor %},"" ],
         datasets: [{
-            label: 'Scatter Dataset',
+            label: 'Dane Izotopwe',
             data: [
             {% for point in delta %}
             {
                 x: {{point.x}},
-                y: {{point.y}},
-                nr_probki: "{{point.nr_probki}}"
+                y: {{point.y}}
             },
             {% endfor %}
             ],
@@ -150,14 +149,148 @@ new Chart(document.getElementById("isotope-chart"), {
             backgroundColor: "#FF0000",
             pointRadius: 5,
             pointHoverRadius: 8,
-        }]
+        },
+        {	label: 'WMWL',
+            data: [
+            {% for point in wmwl %}
+            {
+                x: {{point.x}},
+                y: {{point.y}}
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#000088",
+            pointRadius: 4,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        {	label: 'Jęzor',
+            data: [
+            {% for point in jezor %}
+            {
+                x: {{point.x}},
+                y: {{point.y}}
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#005555",
+            pointRadius: 4,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        {	label: 'Górne Parowanie',
+            data: [
+            {% for point in gorneParowanie %}
+            {
+                x: {{point.x}},
+                y: {{point.y}}
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#00EEEE",
+            pointRadius: 4,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        {	label: 'Dolne parowanie',
+            data: [
+            {% for point in dolneParowanie %}
+            {
+                x: {{point.x}},
+                y: {{point.y}}
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#EE00EE",
+            pointRadius: 4,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        {	label: 'Koncowe parowanie',
+            data: [
+            {% for point in koncoweParowanie %}
+            {
+                x: {{point.x}},
+                y: {{point.y}}
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#00AA00",
+            pointRadius: 4,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        {	label: 'Jęzor2',
+            data: [
+            {% for point in jezor2 %}
+            {
+                x: {{point.x}},
+                y: {{point.y}}
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#EEEE00",
+            pointRadius: 4,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        {	label: 'SMOW',
+            data: [
+            {
+                x: {{smow.x}},
+                y: {{smow.y}}
+            }
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#AAAAAA",
+            pointRadius: 8,
+            pointStyle: 'rectRot',
+            pointHoverRadius: 8,
+        },
+        ]
     },
     options: {
 		tooltips: {
      		callbacks: {
         		label: function(tooltipItem, data) {
-               		var label = data.labels[tooltipItem.index];
-               		return label + ':\n δ18O:' + tooltipItem.xLabel + ', δ2H:' + tooltipItem.yLabel;
+        			if (tooltipItem.datasetIndex === 0) {
+               			var label = data.labels[tooltipItem.index];
+               			return label + ':\n δ18O:' + tooltipItem.xLabel + ', δ2H:' + tooltipItem.yLabel;
+               			}
+               		else if (tooltipItem.datasetIndex === 1)
+               			{
+               			return 'WMWL (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
+					else if (tooltipItem.datasetIndex === 2)
+               			{
+               			return 'Jęzor (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
+					else if (tooltipItem.datasetIndex === 3)
+               			{
+               			return 'Górne parowanie (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
+					else if (tooltipItem.datasetIndex === 4)
+               			{
+               			return 'Dolne parowanie (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
+					else if (tooltipItem.datasetIndex === 5)
+               			{
+               			return 'Końcowe parowanie (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
+					else if (tooltipItem.datasetIndex === 6)
+               			{
+               			return 'Jezor2 (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
+               		else
+               			{
+               			return 'SMOW (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               			}
             	}
      		}
 		},
@@ -168,7 +301,7 @@ new Chart(document.getElementById("isotope-chart"), {
             fontColor: '#000000'
         },
     	legend: {
-    		display: false
+    		display: true
     	},
         scales: {
             xAxes: [{
@@ -182,12 +315,14 @@ new Chart(document.getElementById("isotope-chart"), {
             		fontStyle: "bold",
       			},
       			ticks: {
-      				min: -10,
-      				max: 10
+      				min: -13,
+      				max: 13,
+      				stepSize: 2
       			},
       			gridLines: {
-  					color: "#000000",
-  					zeroLineColor: "#000000"
+  					color: "#444444",
+  					zeroLineColor: "#000000",
+  					zeroLineWidth: 2
 				}
             }],
             yAxes: [{
@@ -200,11 +335,13 @@ new Chart(document.getElementById("isotope-chart"), {
       			},
       			ticks: {
       				min: -90,
-      				max: 10
+      				max: 20,
+      				stepSize: 10
       			},
       			gridLines: {
-  					color: "#000000",
-  					zeroLineColor: "#000000"
+  					color: "#444444",
+  					zeroLineColor: "#000000",
+  					zeroLineWidth: 2
 				}
             }]
         }

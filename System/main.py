@@ -3,7 +3,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 from flask import Flask, render_template, request
 import configparser
-from xlsUtils import *
+from charts import *
 from dbUtils import *
 import git
 import datetime
@@ -207,7 +207,9 @@ def charts():
             point['poziom'] = sample['poziom']
             delta.append(point)
     return render_template('chart-chem.html', data=data, delta=delta, fromDate=fromDate, toDate=toDate, event=event,
-                           level=level, constChemDataPoints=constChemDataPoints)
+                           level=level, constChemDataPoints=constChemDataPoints, jezor=jezor, jezor2=jezor2, wmwl=wmwl,
+                           smow=smow, gorneParowanie=gorneParowanie, dolneParowanie=dolneParowanie,
+                           koncoweParowanie=koncoweParowanie)
 
 @app.route('/info')
 def infoPage():
