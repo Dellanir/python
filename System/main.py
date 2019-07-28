@@ -206,7 +206,8 @@ def charts():
             point['nr_zjawiska'] = sample['nr_zjawiska']
             point['poziom'] = sample['poziom']
             delta.append(point)
-    return render_template('chart-chem.html', data=data, delta=delta, fromDate=fromDate, toDate=toDate, event=event, level=level)
+    return render_template('chart-chem.html', data=data, delta=delta, fromDate=fromDate, toDate=toDate, event=event,
+                           level=level, constChemDataPoints=constChemDataPoints)
 
 @app.route('/info')
 def infoPage():

@@ -32,13 +32,12 @@ new Chart(document.getElementById("chemistry-chart"), {
  data: {
  		labels: [{% for point in delta %}"{{point.nr_probki}} ({{point.nr_zjawiska}}/{{point.poziom}})",{% endfor %},"" ],
         datasets: [{
-            label: 'Scatter Dataset',
+            label: 'Dane chemiczne',
             data: [
             {% for point in data %}
             {
                 x: {{point.x}},
                 y: {{point.y}},
-                nr_probki: "{{point.nr_probki}}"
             },
             {% endfor %}
             ],
@@ -46,14 +45,36 @@ new Chart(document.getElementById("chemistry-chart"), {
             backgroundColor: "#FF0000",
             pointRadius: 5,
             pointHoverRadius: 8
-        }]
+        },
+        {
+            label: 'Linia równowagi',
+            data: [
+            {% for point in constChemDataPoints %}
+            {
+                x: {{point.x}},
+                y: {{point.y}},
+            },
+            {% endfor %}
+            ],
+            borderColor: "#000000",
+            backgroundColor: "#000000",
+            pointRadius: 5,
+            pointStyle: "star",
+            pointHoverRadius: 7
+        },
+        ]
     },
     options: {
     	tooltips: {
      		callbacks: {
         		label: function(tooltipItem, data) {
-               		var label = data.labels[tooltipItem.index];
-               		return label + ':\n Na+K:' + tooltipItem.xLabel + ', Ca+Mg:' + tooltipItem.yLabel;
+        			if (tooltipItem.datasetIndex === 0) {
+               			var label = data.labels[tooltipItem.index];
+               			return label + ':\n Na+K:' + tooltipItem.xLabel + ', Ca+Mg:' + tooltipItem.yLabel;
+               			}
+               		else {
+               			return 'Linia równowagi (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               		}
             	}
      		}
 		},
