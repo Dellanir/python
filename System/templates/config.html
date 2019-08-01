@@ -25,11 +25,11 @@
 					</tr>
 				</thead>
   				<tbody>
-				{% for key, value in config.items() %}
+
   				  <tr>
-					  <td>{{loop.index0}}.</td>
-					  <td>{{key}}</td>
-					  <td><input type="checkbox" name="{{key}}" {{ 'checked' if value=='True' else ''}} ></td>
+					  <td>0.</td>
+					  <td>nr zjawiska</td>
+					  <td><input type="checkbox" name="nr_zjawiska" {{ 'checked' if config.nr_zjawiska=='True' else ''}} ></td>
 					  <td></td>
 					  <td></td>
 					  <td></td>
@@ -37,7 +37,403 @@
 					  <td></td>
 					  <td></td>
   				  </tr>
-				{% endfor %}
+
+  				  <tr>
+					  <td>1.</td>
+					  <td>poziom</td>
+					  <td><input type="checkbox" name="poziom" {{ 'checked' if config.poziom=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>2.</td>
+					  <td>nr próbki</td>
+					  <td><input type="checkbox" name="nr_probki" {{ 'checked' if config.nr_probki=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>3.</td>
+					  <td>Data pobrania</td>
+					  <td><input type="checkbox" name="data_pobrania" {{ 'checked' if config.data_pobrania=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>4.</td>
+					  <td>Gęstość</td>
+					  <td><input type="checkbox" name="gestosc" {{ 'checked' if config.gestosc=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>5.</td>
+					  <td>pH</td>
+					  <td><input type="checkbox" name="ph" {{ 'checked' if config.ph=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>6.</td>
+					  <td>K</td>
+					  <td><input type="checkbox" name="k" {{ 'checked' if config.k=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>7.</td>
+					  <td>Ca</td>
+					  <td><input type="checkbox" name="ca" {{ 'checked' if config.ca=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>8.</td>
+					  <td>Mg</td>
+					  <td><input type="checkbox" name="mg" {{ 'checked' if config.mg=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>9.</td>
+					  <td>Br</td>
+					  <td><input type="checkbox" name="br" {{ 'checked' if config.br=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>10.</td>
+					  <td>cl</td>
+					  <td><input type="checkbox" name="cl" {{ 'checked' if config.cl=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>11.</td>
+					  <td>CaO</td>
+					  <td><input type="checkbox" name="cao" {{ 'checked' if config.cao=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>12.</td>
+					  <td>MgO</td>
+					  <td><input type="checkbox" name="mgo" {{ 'checked' if config.mgo=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>13.</td>
+					  <td>SO3</td>
+					  <td><input type="checkbox" name="so3" {{ 'checked' if config.so3=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>14.</td>
+					  <td>SO4</td>
+					  <td><input type="checkbox" name="so4" {{ 'checked' if config.so4=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>15.</td>
+					  <td>KBr</td>
+					  <td><input type="checkbox" name="kbr" {{ 'checked' if config.kbr=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>16.</td>
+					  <td>CaSO4</td>
+					  <td><input type="checkbox" name="caso4" {{ 'checked' if config.caso4=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>17.</td>
+					  <td>MgSO4</td>
+					  <td><input type="checkbox" name="mgso4" {{ 'checked' if config.mgso4=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>18.</td>
+					  <td>KCl</td>
+					  <td><input type="checkbox" name="kcl" {{ 'checked' if config.kcl=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>19.</td>
+					  <td>NaCl</td>
+					  <td><input type="checkbox" name="nacl" {{ 'checked' if config.nacl=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>20.</td>
+					  <td>CaCl2</td>
+					  <td><input type="checkbox" name="cacl2" {{ 'checked' if config.cacl2=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>21.</td>
+					  <td>MgCl2</td>
+					  <td><input type="checkbox" name="mgcl2" {{ 'checked' if config.mgcl2=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>22.</td>
+					  <td>NaBr</td>
+					  <td><input type="checkbox" name="nabr" {{ 'checked' if config.nabr=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>23.</td>
+					  <td>Stężenie roztworu wyliczone z soli</td>
+					  <td><input type="checkbox" name="stezenie_roztworu_z_soli" {{ 'checked' if config.stezenie_roztworu_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>24.</td>
+					  <td>Stężenie roztworu wyliczone z jonów</td>
+					  <td><input type="checkbox" name="stezenie_roztworu_z_jonow" {{ 'checked' if config.stezenie_roztworu_z_jonow=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>25.</td>
+					  <td>Stężenie roztworu w H2O z soli</td>
+					  <td><input type="checkbox" name="stezenie_roztworu_w_h2o_z_soli" {{ 'checked' if config.stezenie_roztworu_w_h2o_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>26.</td>
+					  <td>Stężenie roztworu w H2O z jonów</td>
+					  <td><input type="checkbox" name="stezenie_roztoworu_w_h2o_z_jonow" {{ 'checked' if config.stezenie_roztoworu_w_h2o_z_jonow=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>27.</td>
+					  <td>Stężenie Ca+Mg w H2O z soli</td>
+					  <td><input type="checkbox" name="stezenie_ca_mg_w_h2o_z_soli" {{ 'checked' if config.stezenie_ca_mg_w_h2o_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>28.</td>
+					  <td>Stężenie Na+K w H2O z soli</td>
+					  <td><input type="checkbox" name="steznie_na_k_w_h2o_z_soli" {{ 'checked' if config.steznie_na_k_w_h2o_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>29.</td>
+					  <td>Stężenie Na+K+Ca+Mg w H2O z soli</td>
+					  <td><input type="checkbox" name="steznie_na_k_ca_mg_w_h2o_z_soli" {{ 'checked' if config.steznie_na_k_ca_mg_w_h2o_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>30.</td>
+					  <td>Poprawka na tlen wyliczona z soli</td>
+					  <td><input type="checkbox" name="poprawka_na_tlen_z_soli" {{ 'checked' if config.poprawka_na_tlen_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>31.</td>
+					  <td>Poprawka na tlen wyliczona z jonów</td>
+					  <td><input type="checkbox" name="poprawka_na_tlen_z_jonow" {{ 'checked' if config.poprawka_na_tlen_z_jonow=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>32.</td>
+					  <td>Poprawka na deuter wyliczona z soli</td>
+					  <td><input type="checkbox" name="poprawka_na_deuter_z_soli" {{ 'checked' if config.poprawka_na_deuter_z_soli=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
+  				  <tr>
+					  <td>33.</td>
+					  <td>Poprawka na deuter wyliczona z jonów</td>
+					  <td><input type="checkbox" name="poprawka_na_deuter_z_jonow" {{ 'checked' if config.poprawka_na_deuter_z_jonow=='True' else ''}} ></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+
   				</tbody>
 			</table>
 

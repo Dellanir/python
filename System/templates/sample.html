@@ -35,15 +35,15 @@
 				  <th scope="col" class="nabr">NaBr</th>
 				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_z_soli">Stężenie</br>z soli</th>
 				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_z_jonow">Stężenie</br>z jonów</th>
-				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_w_h2o_z_soli">w H2O</br>z soli</th>
-				  <th style="min-width: 100px" scope="col" class="stezenie_roztoworu_w_h2o_z_jonow">w H2O</br>z jonów</th>
-				  <th style="min-width: 100px" scope="col" class="stezenie_ca_mg_w_h2o_z_soli">Ca+Mg</br>z soli</th>
-				  <th style="min-width: 100px" scope="col" class="steznie_na_k_w_h2o_z_soli">Na+K</br>z soli</th>
-				  <th style="min-width: 100px" scope="col" class="steznie_na_k_ca_mg_w_h2o_z_soli">Na+K+Ca+Mg</br>z soli</th>
-				  <th style="min-width: 100px" scope="col" class="poprawka_na_tlen_z_soli">P. tlen</br>z soli</th>
-				  <th style="min-width: 100px" scope="col" class="poprawka_na_tlen_z_jonow">P. tlen</br>z jonów</th>
-				  <th style="min-width: 100px" scope="col" class="poprawka_na_deuter_z_soli">P. deuter</br>z soli</th>
-				  <th style="min-width: 100px" scope="col" class="poprawka_na_deuter_z_jonow">P. deuter</br>z jonów</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_roztworu_w_h2o_z_soli" data-toggle="tooltip" data-placement="top" title="Stężenie roztworu w H20 wyliczone z soli">w H2O</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_roztoworu_w_h2o_z_jonow" data-toggle="tooltip" data-placement="top" title="Stężenie roztworu w H20 wyliczone z jonów">w H2O</br>z jonów</th>
+				  <th style="min-width: 100px" scope="col" class="stezenie_ca_mg_w_h2o_z_soli" data-toggle="tooltip" data-placement="top" title="Stężenie Ca+Mg w H20 wyliczone z soli">Ca+Mg</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="steznie_na_k_w_h2o_z_soli" data-toggle="tooltip" data-placement="top" title="Stężenie Na+K w H20 wyliczone z soli">Na+K</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="steznie_na_k_ca_mg_w_h2o_z_soli" data-toggle="tooltip" data-placement="top" title="Stężenie Na+K+Ca+Mg w H20 wyliczone z soli">Na+K+Ca+Mg</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_tlen_z_soli" data-toggle="tooltip" data-placement="top" title="Poprawka na tlen wyliczona z soli">P. tlen</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_tlen_z_jonow" data-toggle="tooltip" data-placement="top" title="Poprawka na tlen wyliczona z jonów">P. tlen</br>z jonów</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_deuter_z_soli" data-toggle="tooltip" data-placement="top" title="Poprawka na deuter wyliczona z soli">P. deuter</br>z soli</th>
+				  <th style="min-width: 100px" scope="col" class="poprawka_na_deuter_z_jonow" data-toggle="tooltip" data-placement="top" title="Poprawka na deuter wyliczona z jonów">P. deuter</br>z jonów</th>
 				  <th scope="col" >Edytuj</th>
   			  </tr>
   			</thead>
@@ -84,7 +84,7 @@
 				  <td style="min-width: 100px" class="poprawka_na_tlen_z_jonow">{{(sample.poprawka_na_tlen_z_jonow|float)|round(2)}}</td>
 				  <td style="min-width: 100px" class="poprawka_na_deuter_z_soli">{{(sample.poprawka_na_deuter_z_soli|float)|round(2)}}</td>
 				  <td style="min-width: 100px" class="poprawka_na_deuter_z_jonow">{{(sample.poprawka_na_deuter_z_jonow|float)|round(2)}}</td>
-				  <td> <a href="/editSample/{{sample.id}}"><img src="{{ url_for('static', filename = 'editIcon.png') }}"  width="50%" height="50%"/></a></td>
+				  <td> <a href="/editSample/{{sample.id}}"><img src="{{ url_for('static', filename = 'editIcon.png') }}"  width="24px" height="24px"/></a></td>
   			  </tr>
 			  {% endfor %}
   			</tbody>
@@ -100,4 +100,9 @@ $(document).ready(function(){
 	{% endfor %}
 })
 		</script>
+<script>
+	$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 {% endblock %}
