@@ -1,16 +1,20 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, request, redirect, url_for
 import configparser
 from charts import *
 from dbUtils import *
 import git
 import datetime
 from flask_basicauth import BasicAuth
+from werkzeug.utils import secure_filename
+from xlsUtils import *
+import os
 
 app = Flask(__name__)
 basic_auth = BasicAuth(app)
+ALLOWED_EXTENSIONS = {'xls'}
 
 @app.route('/index')
 @app.route('/')
@@ -246,11 +250,37 @@ def backupLoad():
     backupList = getBackupList()
     return render_template('backup.html', backupList=backupList, backupLoadedName=backupLoadedName)
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/import', methods=['POST', 'GET'])
+def importXls():
+    if request.method=='GET':
+        return render_template('import.html')
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(filename)
+            sample = getValueDictFromXls(filename)
+            os.remove(filename)
+            return render_template('addImportedSample.html', sample=sample)
+
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('config.ini')
     app.config['BASIC_AUTH_USERNAME'] = config['SERVER']['username']
     app.config['BASIC_AUTH_PASSWORD'] = config['SERVER']['password']
+    app.config['UPLOAD_FOLDER'] = ''
     if config['SERVER']['require_authentication'] == 'True':
         app.config['BASIC_AUTH_FORCE'] = True
     app.run( debug = config['SERVER']['debug'],

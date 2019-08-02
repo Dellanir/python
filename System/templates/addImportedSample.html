@@ -1,0 +1,407 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div>
+		<form method="POST" action="/addSample">
+			<table class="table">
+				<thead>
+					<tr>
+						<div>
+							<b>&nbsp; Dodawanie nowych danych pomiarowych: &nbsp; </b>
+							<input type="submit" value="Zapisz nowy pomiar">&nbsp
+							lub <b><a href="javascript:history.back()"><button type="button">Anuluj</button></b> &nbsp
+
+						</div>
+					</tr>
+					<tr>
+						<th>#</th>
+						<th>Pole</th>
+						<th>Wartość</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+  				<tbody>
+  				  <tr>
+					  <td>1</td>
+					  <td>nr_zjawiska</td>
+					  <td><input type="text" name="nr_zjawiska" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>2</td>
+					  <td>poziom</td>
+					  <td><input type="text" name="poziom" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>3</td>
+					  <td>nr_probki</td>
+					  <td><input type="text" name="nr_probki" value="{{sample.kod_probki}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>4</td>
+					  <td>data_pobrania</td>
+					  <td><input type="text" name="data_pobrania" value=""> <font color="grey">format: (RRRR-MM-DD)</font></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>5</td>
+					  <td>gestosc</td>
+					  <td><input type="text" name="gestosc" value="{{sample.gestosc}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>6</td>
+					  <td>ph</td>
+					  <td><input type="text" name="ph" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>7</td>
+					  <td>K+</td>
+					  <td><input type="text" name="K" value="{{sample.k}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>8</td>
+					  <td>Ca++</td>
+					  <td><input type="text" name="Ca" value="{{sample.ca}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>9</td>
+					  <td>Mg++</td>
+					  <td><input type="text" name="Mg" value="{{sample.mg}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>10</td>
+					  <td>Br-</td>
+					  <td><input type="text" name="Br" value="{{sample.br}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>11</td>
+					  <td>Cl-</td>
+					  <td><input type="text" name="Cl" value="{{sample.cl}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>12</td>
+					  <td>CaO</td>
+					  <td><input type="text" name="CaO" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>13</td>
+					  <td>MgO</td>
+					  <td><input type="text" name="MgO" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>14</td>
+					  <td>SO3--</td>
+					  <td><input type="text" name="SO3" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>15</td>
+					  <td>SO4--</td>
+					  <td><input type="text" name="SO4" value="{{sample.so4}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>16</td>
+					  <td>KBr</td>
+					  <td><input type="text" name="KBr" value="{{sample.kbr}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>17</td>
+					  <td>CaSO4</td>
+					  <td><input type="text" name="CaSO4" value="{{sample.caso4}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>18</td>
+					  <td>MgSO4</td>
+					  <td><input type="text" name="MgSO4" value="{{sample.mgso4}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>19</td>
+					  <td>KCl</td>
+					  <td><input type="text" name="KCl" value="{{sample.kcl}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>20</td>
+					  <td>NaCl</td>
+					  <td><input type="text" name="NaCl" value="{{sample.nacl}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>21</td>
+					  <td>CaCl2</td>
+					  <td><input type="text" name="CaCl2" value="{{sample.cacl2}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>22</td>
+					  <td>MgCl2</td>
+					  <td><input type="text" name="MgCl2" value="{{sample.mgcl2}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>23</td>
+					  <td>NaBr</td>
+					  <td><input type="text" name="NaBr" value=""></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>24</td>
+					  <td>Stężenie roztworu [g/l] roztworu z soli</td>
+					  <td><input type="text" name="stezenie_roztworu_z_soli" value="{{sample.stezenie_roztworu_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>25</td>
+					  <td>Stężenie roztworu [g/l] roztworu z jonów</td>
+					  <td><input type="text" name="stezenie_roztworu_z_jonow" value="{{sample.stezenie_roztworu_z_jonow}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>26</td>
+					  <td>Stężenie roztworu w [g/kg] H2O z soli</td>
+					  <td><input type="text" name="stezenie_roztworu_w_h2o_z_soli" value="{{sample.stezenie_roztworu_w_h2o_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>27</td>
+					  <td>Stężenie roztworu w [g/kg] H2O z jonów</td>
+					  <td><input type="text" name="stezenie_roztoworu_w_h2o_z_jonow" value="{{sample.stezenie_roztoworu_w_h2o_z_jonow}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>28</td>
+					  <td>Stężenie Ca+Mg w [mol/kg] H2O z soli</td>
+					  <td><input type="text" name="stezenie_ca_mg_w_h2o_z_soli" value="{{sample.stezenie_ca_mg_w_h2o_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>29</td>
+					  <td>Stężenie Na+K w [mol/kg] H2O z soli</td>
+					  <td><input type="text" name="steznie_na_k_w_h2o_z_soli" value="{{sample.steznie_na_k_w_h2o_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>30</td>
+					  <td>Stężenie Na+K+Ca+Mg [mol/kg] w H2O z soli</td>
+					  <td><input type="text" name="steznie_na_k_ca_mg_w_h2o_z_soli" value="{{sample.steznie_na_k_ca_mg_w_h2o_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>31</td>
+					  <td>Poprawka na tlen obliczona z soli</td>
+					  <td><input type="text" name="poprawka_na_tlen_z_soli" value="{{sample.poprawka_na_tlen_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>32</td>
+					  <td>Poprawka na tlen obliczona z jonów</td>
+					  <td><input type="text" name="poprawka_na_tlen_z_jonow" value="{{sample.poprawka_na_tlen_z_jonow}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>33</td>
+					  <td>Poprawka na deuter obliczona z soli</td>
+					  <td><input type="text" name="poprawka_na_deuter_z_soli" value="{{sample.poprawka_na_deuter_z_soli}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+				  <tr>
+					  <td>34</td>
+					  <td>Poprawka na deuter obliczona z jonów</td>
+					  <td><input type="text" name="poprawka_na_deuter_z_jonow" value="{{sample.poprawka_na_deuter_z_jonow}}"></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+  				  </tr>
+  				</tbody>
+			</table>
+		</form>
+	</div>
+{% endblock %}
