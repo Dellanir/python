@@ -247,12 +247,13 @@ def backupLoad():
     return render_template('backup.html', backupList=backupList, backupLoadedName=backupLoadedName)
 
 if __name__ == '__main__':
-   config = configparser.ConfigParser()
-   config.read('config.ini')
-   app.config['BASIC_AUTH_USERNAME'] = config['SERVER']['username']
-   app.config['BASIC_AUTH_PASSWORD'] = config['SERVER']['password']
-   app.config['BASIC_AUTH_FORCE'] = config['SERVER']['require_authentication']
-   app.run( debug = config['SERVER']['debug'],
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    app.config['BASIC_AUTH_USERNAME'] = config['SERVER']['username']
+    app.config['BASIC_AUTH_PASSWORD'] = config['SERVER']['password']
+    if config['SERVER']['require_authentication'] == 'True':
+        app.config['BASIC_AUTH_FORCE'] = True
+    app.run( debug = config['SERVER']['debug'],
             port = config['SERVER']['port'],
             host = config['SERVER']['host']
                )
