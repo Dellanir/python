@@ -35,7 +35,7 @@ def getSample(id):
 def getAllSamples():
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from results'
+    query = 'select * from results order by data_pobrania'
     samples = []
     for row in cursor.execute(query):
         sample = dict_factory(cursor, row)
@@ -46,7 +46,7 @@ def getAllSamples():
 def getSamplesByLevel(level):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from results where poziom={0}'.format(level)
+    query = 'select * from results where poziom={0} order by data_pobrania'.format(level)
     samples = []
     for row in cursor.execute(query):
         sample = dict_factory(cursor, row)
@@ -57,7 +57,7 @@ def getSamplesByLevel(level):
 def getSamplesByEvent(event):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from results where nr_zjawiska={0}'.format(event)
+    query = 'select * from results where nr_zjawiska={0} order by data_pobrania'.format(event)
     samples = []
     for row in cursor.execute(query):
         sample = dict_factory(cursor, row)
@@ -68,7 +68,7 @@ def getSamplesByEvent(event):
 def getSamplesByEventAndLevel(event, level):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from results where nr_zjawiska={0} and poziom={1}'.format(event, level)
+    query = 'select * from results where nr_zjawiska={0} and poziom={1} order by data_pobrania'.format(event, level)
     samples = []
     for row in cursor.execute(query):
         sample = dict_factory(cursor, row)
@@ -165,7 +165,7 @@ def deleteSample(id):
 def getAllIsotopes():
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from izotopy'
+    query = 'select * from izotopy order by data_poboru'
     isotopes = []
     for row in cursor.execute(query):
         isotope = dict_factory(cursor, row)
@@ -176,7 +176,7 @@ def getAllIsotopes():
 def getIsotopesByLevel(level):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from izotopy where poziom = {0}'.format(level)
+    query = 'select * from izotopy where poziom = {0} order by data_poboru'.format(level)
     isotopes = []
     for row in cursor.execute(query):
         isotope = dict_factory(cursor, row)
@@ -187,7 +187,7 @@ def getIsotopesByLevel(level):
 def getIsotopesByEvent(event):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from izotopy where nr_zjawiska = {0}'.format(event)
+    query = 'select * from izotopy where nr_zjawiska = {0} order by data_poboru'.format(event)
     isotopes = []
     for row in cursor.execute(query):
         isotope = dict_factory(cursor, row)
@@ -198,7 +198,7 @@ def getIsotopesByEvent(event):
 def getIsotopesByLevelAndEvent(level, event):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
-    query = 'select * from izotopy where nr_zjawiska = {0} and poziom = {1}'.format(event, level)
+    query = 'select * from izotopy where nr_zjawiska = {0} and poziom = {1} order by data_poboru'.format(event, level)
     isotopes = []
     for row in cursor.execute(query):
         isotope = dict_factory(cursor, row)

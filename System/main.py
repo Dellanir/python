@@ -5,7 +5,10 @@ from flask import Flask, render_template, request, flash, request, redirect, url
 import configparser
 from charts import *
 from dbUtils import *
-import git
+try:
+    import git
+except:
+    pass
 import datetime
 from flask_basicauth import BasicAuth
 from werkzeug.utils import secure_filename
@@ -169,7 +172,7 @@ def helpPage():
 @app.route('/charts', methods=['GET', 'POST'])
 def charts():
     if request.method == "GET":
-        return render_template('chart-chem.html')
+        return render_template('chart.html')
     fromDate = request.form['fromDate']
     toDate = request.form['toDate']
     event = request.form['event']
@@ -212,7 +215,7 @@ def charts():
             point['nr_zjawiska'] = sample['nr_zjawiska']
             point['poziom'] = sample['poziom']
             delta.append(point)
-    return render_template('chart-chem.html', data=data, delta=delta, fromDate=fromDate, toDate=toDate, event=event,
+    return render_template('chart.html', data=data, delta=delta, fromDate=fromDate, toDate=toDate, event=event,
                            level=level, constChemDataPoints=constChemDataPoints, jezor=jezor, jezor2=jezor2, wmwl=wmwl,
                            smow=smow, gorneParowanie=gorneParowanie, dolneParowanie=dolneParowanie,
                            koncoweParowanie=koncoweParowanie)
