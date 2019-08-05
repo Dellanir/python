@@ -2,11 +2,13 @@
 
 {% block body %}
 	<div>
+		<table>
+			<tr>
+				<td><a href="/addIsotope"> <b>+ Dodaj nowe dane izotopowe</b></a></td>
+			</tr>
+		</table>
 		<table class="tableFixHead" id="sampleTable">
   			<thead class="thead-dark">
-			  <tr>
-				  <td><a href="/addIsotope"> <b>+ Dodaj nowe dane izotopowe</b></a></td>
-			  </tr>
   			  <tr>
 				  <th scope="col" onclick="sortTable(0)" class="nr_kopalni">Nr kopalni</th>
 				  <th scope="col" onclick="sortTable(1)" class="nr_zjawiska">Nr zjawiska</th>
@@ -93,5 +95,6 @@ function sortTable(n) {
   }
 }
 </script>
+
 
 {% endblock %}
