@@ -253,6 +253,21 @@ def backupLoad():
     backupList = getBackupList()
     return render_template('backup.html', backupList=backupList, backupLoadedName=backupLoadedName)
 
+@app.route('/backupRename', methods=['POST'])
+def backupRename():
+    oldName = request.form['oldname']
+    newName = request.form['newname']
+    renameBackup(oldName, newName)
+    backupList = getBackupList()
+    return render_template('backup.html', backupList=backupList)
+
+@app.route('/backupDelete', methods=['POST'])
+def backupDelete():
+    name = request.form['name']
+    deleteBackup(name)
+    backupList = getBackupList()
+    return render_template('backup.html', backupList=backupList)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 

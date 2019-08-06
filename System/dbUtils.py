@@ -3,6 +3,7 @@ import shutil
 import glob
 import datetime
 from collections import OrderedDict
+import os
 
 #Helpers
 def executeQuery(query):
@@ -269,6 +270,14 @@ def importBackup(backupName):
 def getBackupList():
     backupList = [ file.split('\\')[-1] for file in glob.glob('db_backup\\*.db') ]
     return backupList
+
+def deleteBackup(backupName):
+    os.remove("db_backup\\{0}".format(backupName))
+
+def renameBackup(oldName, newName):
+    if newName[-3:] != '.db':
+        newName += '.db'
+    os.rename("db_backup\\{0}".format(oldName), "db_backup\\{0}".format(newName))
 
 def getAvgValue(isotope, type):
     try:
