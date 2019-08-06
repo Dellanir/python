@@ -268,6 +268,10 @@ def backupDelete():
     backupList = getBackupList()
     return render_template('backup.html', backupList=backupList)
 
+@app.route('/data.db')
+def backupDownload():
+    return send_file('data.db', attachment_filename='data.db')
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 

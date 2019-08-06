@@ -4,7 +4,10 @@
 	<div>
 		<table>
 			<tr>
-				<td><a href="/addIsotope"> <b>+ Dodaj nowe dane izotopowe</b></a></td> Wyeksportuj dane do arkusza .xls <form action="/exportIsotope" method="POST"><input type="hidden" name="level" value="{{level}}"><input type="hidden" name="event" value="{{event}}"><input type="submit" value="Wyeksportuj"></form> lub
+				<td><a href="/addIsotope"> <b>+ Dodaj nowe dane izotopowe</b></a></td>
+			</tr>
+			<tr>
+				<td><form action="/exportIsotope" method="POST"><input type="hidden" name="level" value="{{level}}"> Wyeksportuj dane do arkusza .xls <input type="hidden" name="event" value="{{event}}"><input type="submit" value="Wyeksportuj"></form> </td>
 			</tr>
 		</table>
 		<table class="tableFixHead" id="sampleTable">
