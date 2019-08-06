@@ -1,7 +1,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-from flask import Flask, render_template, request, flash, request, redirect, url_for
+from flask import Flask, render_template, request, flash, request, redirect, url_for, send_file
 import configparser
 from charts import *
 from dbUtils import *
@@ -53,19 +53,19 @@ def isotopes():
 def isotopesLevel(level):
     isotopes = getIsotopesByLevel(level)
     convertNulls(isotopes)
-    return render_template('isotope.html', isotopes=isotopes)
+    return render_template('isotope.html', level=level, isotopes=isotopes)
 
 @app.route('/isotopesEvent/<int:event>')
 def isotopesEvent(event):
     isotopes = getIsotopesByEvent(event)
     convertNulls(isotopes)
-    return render_template('isotope.html', isotopes=isotopes)
+    return render_template('isotope.html', event=event, isotopes=isotopes)
 
 @app.route('/isotopesEventAndLevel/<int:event>/<int:level>')
 def isotopesEventAndLevel(event, level):
     isotopes = getIsotopesByLevelAndEvent(level, event)
     convertNulls(isotopes)
-    return render_template('isotope.html', isotopes=isotopes)
+    return render_template('isotope.html', event=event, level=level, isotopes=isotopes)
 
 @app.route('/editIsotope/<int:id>', methods = ['GET', 'POST'])
 def editIsotope(id):
@@ -102,7 +102,7 @@ def samplesByLevel(level):
     config = config['SAMPLE']
     samples = getSamplesByLevel(level)
     convertNulls(samples)
-    return render_template('sample.html', samples=samples, config=config)
+    return render_template('sample.html', samples=samples, level=level, config=config)
 
 @app.route('/event/<int:event>')
 def samplesByEvent(event):
@@ -111,7 +111,7 @@ def samplesByEvent(event):
     config = config['SAMPLE']
     samples = getSamplesByEvent(event)
     convertNulls(samples)
-    return render_template('sample.html', samples=samples, config=config)
+    return render_template('sample.html', samples=samples, event=event, config=config)
 
 @app.route('/event-and-level/<int:event>/<int:level>')
 def samplesByEventAndLevel(event, level):
@@ -120,7 +120,7 @@ def samplesByEventAndLevel(event, level):
     config = config['SAMPLE']
     samples = getSamplesByEventAndLevel(event, level)
     convertNulls(samples)
-    return render_template('sample.html', samples=samples, config=config)
+    return render_template('sample.html', samples=samples, event=event, level=level, config=config)
 
 @app.route('/editConfig', methods=['GET', 'POST'])
 def editConfig():
@@ -292,6 +292,53 @@ def importXls():
             sample = getValueDictFromXls(filename)
             os.remove(filename)
             return render_template('addImportedSample.html', sample=sample)
+
+@app.route('/exportSample', methods=['POST'])
+def exportSample():
+    level = request.form['level']
+    event = request.form['event']
+    if level=='' and event=='':
+        samples = getAllSamples()
+    if level!='' and event=='':
+        samples = getSamplesByLevel(level)
+    if level=='' and event!='':
+        samples = getSamplesByEvent(event)
+    if level!='' and event!='':
+        samples = getSamplesByEventAndLevel(event, level)
+    book = xlwt.Workbook()
+    sheet = book.add_sheet("Dane Chemiczne")
+    for i, key in enumerate(samples[0].keys()):
+        sheet.write(0, i, key)
+    for i, sample in enumerate(samples):
+        for k, value in enumerate(sample.values()):
+            sheet.write(i+1, k, value)
+    book.save('chemiczne.xls')
+    return send_file('chemiczne.xls', attachment_filename='chemiczne.xls')
+
+@app.route('/exportIsotope', methods=['POST'])
+def exportIsotope():
+    level = request.form['level']
+    event = request.form['event']
+    if level=='' and event=='':
+        isotopes = getAllIsotopes()
+    if level!='' and event=='':
+        isotopes = getIsotopesByLevel(level)
+    if level=='' and event!='':
+        isotopes = getIsotopesByEvent(event)
+    if level!='' and event!='':
+        isotopes = getIsotopesByLevelAndEvent(level, event)
+    book = xlwt.Workbook()
+    sheet = book.add_sheet("Dane Izotopowe")
+    for i, key in enumerate(isotopes[0].keys()):
+        sheet.write(0, i, key)
+    for i, isotope in enumerate(isotopes):
+        for k, value in enumerate(isotope.values()):
+            sheet.write(i+1, k, value)
+    book.save('izotopowe.xls')
+    return send_file('izotopowe.xls', attachment_filename='izotopowe.xls')
+
+
+
 
 if __name__ == '__main__':
     config = configparser.ConfigParser()
