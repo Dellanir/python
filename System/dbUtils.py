@@ -89,6 +89,7 @@ def updateSample(id, sample):
     query += 'Mg = {0}, '.format(sample['Mg'].replace(',', '.'))
     query += 'Br = {0}, '.format(sample['Br'].replace(',', '.'))
     query += 'Cl = {0}, '.format(sample['Cl'].replace(',', '.'))
+    query += 'Na = {0}, '.format(sample['Na'].replace(',', '.'))
     query += 'CaO = {0}, '.format(sample['CaO'].replace(',', '.'))
     query += 'MgO = {0}, '.format(sample['MgO'].replace(',', '.'))
     query += 'SO3 = {0}, '.format(sample['SO3'].replace(',', '.'))
@@ -118,7 +119,7 @@ def updateSample(id, sample):
     executeQuery(query)
 
 def addSample(sample):
-    query = 'INSERT INTO results(nr_zjawiska, poziom, nr_probki, data_pobrania, gestosc, ph, K, Ca, Mg, Br, Cl, CaO, MgO, SO3, SO4, KBr, CaSO4, MgSO4, KCl, NaCl, CaCl2, MgCl2, NaBr, stezenie_roztworu_z_soli, stezenie_roztworu_z_jonow, stezenie_roztworu_w_h2o_z_soli, stezenie_roztoworu_w_h2o_z_jonow, stezenie_ca_mg_w_h2o_z_soli, steznie_na_k_w_h2o_z_soli, steznie_na_k_ca_mg_w_h2o_z_soli, poprawka_na_tlen_z_soli, poprawka_na_tlen_z_jonow, poprawka_na_deuter_z_soli, poprawka_na_deuter_z_jonow) values ('
+    query = 'INSERT INTO results(nr_zjawiska, poziom, nr_probki, data_pobrania, gestosc, ph, K, Ca, Mg, Br, Cl, Na, CaO, MgO, SO3, SO4, KBr, CaSO4, MgSO4, KCl, NaCl, CaCl2, MgCl2, NaBr, stezenie_roztworu_z_soli, stezenie_roztworu_z_jonow, stezenie_roztworu_w_h2o_z_soli, stezenie_roztoworu_w_h2o_z_jonow, stezenie_ca_mg_w_h2o_z_soli, steznie_na_k_w_h2o_z_soli, steznie_na_k_ca_mg_w_h2o_z_soli, poprawka_na_tlen_z_soli, poprawka_na_tlen_z_jonow, poprawka_na_deuter_z_soli, poprawka_na_deuter_z_jonow) values ('
     query += '{0}, '.format(sample['nr_zjawiska'].replace(',', '.'))
     query += '{0}, '.format(sample['poziom'].replace(',', '.'))
     query += '{0}, '.format(sample['nr_probki'].replace(',', '.'))
@@ -130,6 +131,7 @@ def addSample(sample):
     query += '{0}, '.format(sample['Mg'].replace(',', '.'))
     query += '{0}, '.format(sample['Br'].replace(',', '.'))
     query += '{0}, '.format(sample['Cl'].replace(',', '.'))
+    query += '{0}, '.format(sample['Na'].replace(',', '.'))
     query += '{0}, '.format(sample['CaO'].replace(',', '.'))
     query += '{0}, '.format(sample['MgO'].replace(',', '.'))
     query += '{0}, '.format(sample['SO3'].replace(',', '.'))
