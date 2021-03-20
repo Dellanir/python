@@ -5,7 +5,7 @@ Flask-BasicAuth==0.2.0
 gitdb2==2.0.5
 GitPython==2.1.11
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.0
 smmap2==2.0.5
 Werkzeug==0.14.1
